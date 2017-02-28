@@ -10,7 +10,7 @@ public class TestController {
 	@RequestMapping("/test")
 	public String gogo(){
 		
-		return "zzz";
+		return "test";
 				
 	}
 }
