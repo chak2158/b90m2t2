@@ -3,17 +3,17 @@ package kr.co.camp.board.vo;
 import java.util.Date;
 
 public class BoardVO {
+	
 	private int reviewNo;
 	private String memberId;
 	private String title;
 	private String content;
-	private Date regdate;
+	private Date regDate;
 	private int recomCnt;
 	private int unrecomCnt;
 	private String mapLatitude;
 	private String mapLongitude;
 	private int viewCnt;
-	
 	public int getReviewNo() {
 		return reviewNo;
 	}
@@ -38,11 +38,11 @@ public class BoardVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getRegdate() {
-		return regdate;
+	public Date getRegDate() {
+		return regDate;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 	public int getRecomCnt() {
 		return recomCnt;
@@ -74,6 +74,5 @@ public class BoardVO {
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
 	}
-	
-	
+
 }
