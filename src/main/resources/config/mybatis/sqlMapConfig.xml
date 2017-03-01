@@ -10,7 +10,7 @@
 	<!-- SQL의 결과를 담을 VO 객체들의 별칭을 설정하여 사용의 편의를 도모  -->
 	<!-- 클래스에 별칭 부여. MemberVO를 member.xml에서 사용한다면 이 이름으로 불러서 쓸게 원래 이름은 너무 기니까-->
 	<typeAliases>
-		<typeAlias alias="board" type="kr.co.mlec.board.vo.BoardVO" />
+		<typeAlias alias="board" type="kr.co.camp.board.vo.BoardVO" />
 		<typeAlias alias="boardFile" type="kr.co.mlec.board.vo.BoardFileVO" />
 		<typeAlias alias="boardComment" type="kr.co.mlec.board.vo.BoardCommentVO" />
 		<typeAlias alias="login" type="kr.co.mlec.board.vo.MemberVO" />
