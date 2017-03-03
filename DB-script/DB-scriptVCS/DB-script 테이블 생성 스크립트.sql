@@ -5,13 +5,6 @@ drop table tb_review_board
 drop table tb_calendar
 drop table tb_member_profile_img
 drop table tb_camp_member
-
-drop sequence s_calendar_no;
-drop sequence s_review_board_no;
-drop sequence s_review_image_no;
-drop sequence s_review_recome_no;
-drop sequence s_review_comment_no;
-
 purge recyclebin;
 
 create sequence s_calendar_no;
@@ -19,6 +12,12 @@ create sequence s_review_board_no;
 create sequence s_review_image_no;
 create sequence s_review_recome_no;
 create sequence s_review_comment_no;
+
+drop sequence s_calendar_no;
+drop sequence s_review_board_no;
+drop sequence s_review_image_no;
+drop sequence s_review_recome_no;
+drop sequence s_review_comment_no;
 
 create table tb_camp_member(
 	member_id varchar2(20) primary key,
