@@ -1,4 +1,4 @@
-package kr.co.camp.BoardService;
+package kr.co.camp.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,10 +7,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.camp.board.vo.BoardFileVO;
-import kr.co.camp.board.vo.BoardVO;
-import kr.co.camp.board.vo.CommentVO;
 import kr.co.camp.repository.mapper.BoardMapper;
+import kr.co.camp.repository.vo.BoardFileVO;
+import kr.co.camp.repository.vo.BoardVO;
+import kr.co.camp.repository.vo.CommentVO;
 import kr.co.camp.repository.vo.PageResultVO;
 import kr.co.camp.repository.vo.SearchVO;
 

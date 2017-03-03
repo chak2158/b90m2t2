@@ -1,10 +1,10 @@
-package kr.co.camp.BoardService;
+package kr.co.camp.service;
 
 import java.util.List;
 import java.util.Map;
 
-import kr.co.camp.board.vo.BoardVO;
-import kr.co.camp.board.vo.CommentVO;
+import kr.co.camp.repository.vo.BoardVO;
+import kr.co.camp.repository.vo.CommentVO;
 import kr.co.camp.repository.vo.SearchVO;
 
 public interface BoardService {
