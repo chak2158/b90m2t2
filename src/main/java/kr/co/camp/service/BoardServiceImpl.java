@@ -15,7 +15,7 @@ import kr.co.camp.repository.vo.PageResultVO;
 import kr.co.camp.repository.vo.SearchVO;
 
 @Service
-public abstract class BoardServiceImpl implements BoardService {
+public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardMapper dao;

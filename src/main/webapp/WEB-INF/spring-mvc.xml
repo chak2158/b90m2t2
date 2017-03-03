@@ -33,11 +33,11 @@
 		</bean>   
 	  </mvc:message-converters> 
 	</mvc:annotation-driven> 
-	
+	<mvc:default-servlet-handler />
 	
 	<mvc:view-controller path="/board/writeForm.do" view-name="board/writeForm.jsp"/> 
 	  
-	<mvc:default-servlet-handler />
+
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/html/" suffix=".html" />
 	</mvc:view-resolvers>
