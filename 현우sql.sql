@@ -1,7 +1,6 @@
 drop table tb_review_board
 
-select * from
-table tb_review_board
+select * from tb_review_board
 
 create table tb_review_board(
 	review_no number(2),
@@ -20,7 +19,7 @@ create table tb_review_board(
 	create sequence tb_review_board_no
 	create sequence tb_review_board_no_reg_date
 	
-	drop sequence tb_board_no_reg_date
+	<!--drop sequence tb_board_no_reg_date --!>
 	
 
 	insert into tb_review_board (review_no, member_id, title, content, recom_cnt, unrecom_cnt, map_latitude, map_longitude, view_cnt) 
@@ -30,9 +29,16 @@ create table tb_review_board(
 	insert into tb_review_board (review_no, member_id, title, content, recom_cnt, unrecom_cnt, map_latitude, map_longitude, view_cnt) 
 	values(s_review_board_review_no.nextVal, 'lhw15', '캠프파이어3', '캠핑지설명3', 02, 02, '02', '02', 02);
 	
-	select * from tb_review_board
+
 	
 	create sequence s_review_board_review_no
+	
+	
+	
+select * from tb_review_comment
+	
+	drop table tb_review_comment
+	purge recyclebin
 	
 create table tb_review_comment(
 	no number(6) primary key,
@@ -49,8 +55,6 @@ create table tb_review_comment(
 	create sequence tb_review_comment_no
 
 
-drop table tb_review_comment
-purge recyclebin
 
 
 	
