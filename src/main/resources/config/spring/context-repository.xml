@@ -23,10 +23,10 @@
 	<!-- DBCP »ç¿ë -->	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		  destroy-method="close"
-      	  p:driverClassName="${driver}"
-          p:url="${url}"
-          p:username="${username}" 
-          p:password="${password}" />
+      	  p:driverClassName="${jdbc.oracle.driver}"
+          p:url="${jdbc.oracle.url}"
+          p:username="${jdbc.oracle.username}" 
+          p:password="${jdbc.oracle.password}" />
      
     <!-- ÆÑÅä¸®  -->
    	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

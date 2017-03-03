@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.co.camp.repository.vo.BoardVO;
+import kr.co.camp.repository.vo.Board;
 import kr.co.camp.repository.vo.SearchVO;
 import kr.co.camp.service.LoginService;
 
@@ -20,7 +20,7 @@ public class LoginController {
 	private LoginService service;
 	
 	@RequestMapping("/login.do")
-	public List<BoardVO> list(SearchVO search) throws Exception {
+	public List<Board> list(SearchVO search) throws Exception {
 		System.out.println("로긴");
 		return service.list(search);
 	}

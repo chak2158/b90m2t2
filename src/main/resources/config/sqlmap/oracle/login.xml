@@ -4,7 +4,7 @@
 	
 <mapper namespace="kr.co.camp.repository.mapper.LoginMapper">
 	
-	<resultMap id="boardMap" type="boardVO">
+	<resultMap id="boardMap" type="board">
 		<result property="no" column="no"/>
 		<result property="title" column="title"/>
 		<result property="writer" column="writer"/>
@@ -12,7 +12,7 @@
 		<result property="regDate" column="reg_date"/>
 	</resultMap>
 	
-	<select id="selectBoard" parameterType="boardVO" resultMap="boardMap">
+	<select id="selectBoard" parameterType="board" resultMap="boardMap">
 		 select *
 		   from tb_board
 	</select>
