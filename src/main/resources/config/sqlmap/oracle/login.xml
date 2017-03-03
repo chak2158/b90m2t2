@@ -3,6 +3,18 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="kr.co.camp.repository.mapper.LoginMapper">
-
+	
+	<resultMap id="boardMap" type="boardVO">
+		<result property="no" column="no"/>
+		<result property="title" column="title"/>
+		<result property="writer" column="writer"/>
+		<result property="content" column="content"/>
+		<result property="regDate" column="reg_date"/>
+	</resultMap>
+	
+	<select id="selectBoard" parameterType="boardVO" resultMap="boardMap">
+		 select *
+		   from tb_board
+	</select>
 
 </mapper>

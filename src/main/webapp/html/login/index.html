@@ -3,7 +3,7 @@
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link href="http://fonts.googleapis.com/css?family=Lato:100italic,100,300italic,300,400italic,400,700italic,700,900italic,900" rel="stylesheet" type="text/css">
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../assets/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css" />
 </head>
@@ -24,7 +24,12 @@
 
 </div>
 <script>
-	$("#content").load("loginForm.html");
+	$.ajax({
+		url:"/b90m2t2/login/login.do",
+		dataType:"json"
+	}).done(function(result) {
+		console.log(result);
+	});
 </script>
 </body>
 </html>
