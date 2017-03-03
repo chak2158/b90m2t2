@@ -11,7 +11,8 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService service;
-	@RequestMapping("/test")
+	
+	@RequestMapping("/test.do")
 	public void test() {
 		System.out.println("ㅋㅋ");
 	}
