@@ -4,37 +4,5 @@
 	
 <mapper namespace="kr.co.camp.repository.mapper.BoardMapper">
 
-	<resultMap id="boardMap" type="board" >
-	
-		<result property="reviewNo" column="review_no"/>
-		<result property="memberId" column="member_id"/>
-		<result property="title" column="title"/>
-		<result property="content" column="content"/>
-		<result property="regDate" column="reg_date"/>
-		<result property="recomCnt" column="recom_cnt"/>
-		<result property="unrecomCnt" column="unrecom_cnt"/>
-		<result property="mapLatitude" column="map_latitude"/>
-		<result property="mapLongitude" column="map_longitude"/>
-		<result property="viewCnt" column="view_cnt"/>
-	</resultMap>
-
-    <select id="selectBoard" parameterType="search" resultMap="boardMap">
-    	  		select *	
-    	  from ( 
-    	  		 select rownum rnum, a.*
-    	           from (select *  
-    	                   from tb_review_board 
-    	                  order by review_no desc 
-    	                ) a 
-    	       )  
-		   	 where rnum between #{begin} and #{end} 
-    </select> 
-   
-   <select id="selectBoardCount" parameterType="search" resultType="int">
-   		select count(*)
-   		  from tb_review_board
-   </select>
-   
-   
     
 </mapper>

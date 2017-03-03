@@ -16,22 +16,37 @@
     http://www.springframework.org/schema/tx/spring-tx.xsd">
     
 	<aop:aspectj-autoproxy />
-	
 	<!-- mybatis 객체 준비 -->
 	<context:property-placeholder 
 		location="classpath:config/mybatis/db.properties"/>
 
-	<!-- DBCP 사용
-	 -->	
+	<!-- DBCP 사용 -->	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		  destroy-method="close"
-      	  p:driverClassName="${jdbc.oracle.driver}"
-          p:url="${jdbc.oracle.url}"
-          p:username="${jdbc.oracle.username}" 
-          p:password="${jdbc.oracle.password}" />
+      	  p:driverClassName="${driver}"
+          p:url="${url}"
+          p:username="${username}" 
+          p:password="${password}" />
+     
+    <!-- 팩토리 -->
+   	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="kr.co.camp.repository.vo" />			
+		<property name="mapperLocations" value="classpath:config/sqlmap/oracle/*.xml" />
+		<property name="configLocation" value="classpath:config/mybatis/sqlMapConfig.xml" />		
+	</bean>
 	
-	<!-- 트랜잭션 처리
-	 -->
+	<!-- 맵퍼 설정 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="kr.co.camp.repository.mapper" />
+	</bean>
+	
+	<!-- sql세션 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- 트랜잭션 처리 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
@@ -49,20 +64,6 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="tranMethod" />
 	</aop:config>
 	
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="typeAliasesPackage" value="kr.co.camp.repository.vo" />			
-		<property name="mapperLocations" value="classpath:config/sqlmap/oracle/*.xml" />
-		<property name="configLocation" value="classpath:config/mybatis/sqlMapConfig.xml" />		
-	</bean>
-	
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="kr.co.camp.repository.mapper" />
-	</bean>
-	
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sqlSessionFactory" />
-	</bean>
 </beans>
 
 

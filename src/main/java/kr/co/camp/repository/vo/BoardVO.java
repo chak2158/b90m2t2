@@ -3,7 +3,6 @@ package kr.co.camp.repository.vo;
 import java.util.Date;
 
 public class BoardVO {
-	
 	private int reviewNo;
 	private String memberId;
 	private String title;
