@@ -24,11 +24,11 @@ create table tb_review_board(
 	
 
 	insert into tb_review_board (review_no, member_id, title, content, recom_cnt, unrecom_cnt, map_latitude, map_longitude, view_cnt) 
-	values(s_review_board_review_no.nextVal, 'lhw', '캠프파이어', '캠핑지설명', 0, 0, '0', '0', 0);
+	values(s_review_board_review_no.nextVal, 'lhw13', '캠프파이어', '캠핑지설명', 0, 0, '0', '0', 0);
 	insert into tb_review_board (review_no, member_id, title, content, recom_cnt, unrecom_cnt, map_latitude, map_longitude, view_cnt) 
-	values(s_review_board_review_no.nextVal, 'lhw2', '캠프파이어2', '캠핑지설명2', 01, 01, '01', '01', 02);
+	values(s_review_board_review_no.nextVal, 'lhw14', '캠프파이어2', '캠핑지설명2', 01, 01, '01', '01', 02);
 	insert into tb_review_board (review_no, member_id, title, content, recom_cnt, unrecom_cnt, map_latitude, map_longitude, view_cnt) 
-	values(s_review_board_review_no.nextVal, 'lhw3', '캠프파이어3', '캠핑지설명3', 02, 02, '02', '02', 02);
+	values(s_review_board_review_no.nextVal, 'lhw15', '캠프파이어3', '캠핑지설명3', 02, 02, '02', '02', 02);
 	
 	select * from tb_review_board
 	

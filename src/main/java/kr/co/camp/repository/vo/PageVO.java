@@ -1,4 +1,4 @@
-package kr.co.camp.board.vo;
+package kr.co.camp.repository.vo;
 
 public class PageVO {
 	private int pageNo = 1;

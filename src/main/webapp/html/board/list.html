@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <title>네트워크 게시판</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="../../css/layout.css">
-<link rel="stylesheet" href="../../css/basic.css">
+<!-- <link rel="stylesheet" href="../../css/layout.css"> -->
+<!-- <link rel="stylesheet" href="../../css/basic.css"> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -47,18 +47,18 @@
 </div>
 <script>
 
-
-
-// 댓글 목록 만드는 공통 함수
 function makePageList(result) {
 	$("#count").text(result.pageResult.count);
+	console.log(result);
 	var html = "";
 	for (var i = 0; i < result.list.length; i++) {
 		var board = result.list[i];
 		html += '<tr>';
-		html += '	<td>' + board.no + '</td>';
+		html += '	<td>' + board.reviewNo + '</td>';
 		html += '	<td>' + board.title + '</td>';
-		html += '	<td>' + board.writer + '</td>';
+		html += '	<td>' + board.content + '</td>';
+		html += '	<td>' + board.viewCnt + '</td>';
+		
 		var date = new Date(board.regDate);
 		var time = date.getFullYear() + "-" 
 		         + (date.getMonth() + 1) + "-" 
@@ -66,7 +66,7 @@ function makePageList(result) {
 		         + date.getHours() + ":"
 		         + date.getMinutes() + ":"
 		         + date.getSeconds();
-		html += '	<td>' + time + '</td>';  
+		html += '<td>' + time + '</td>';  
 		html += '</tr>';
 	}
 	if (!result.list.length) {
@@ -92,7 +92,7 @@ function makePageLink(data) {
 			fn = "javascript:pageList(" + (data.beginPage - 1) + ");";
 		}
 		html += '<a href="' + fn + '" aria-label="Previous">';
-		html += '    <span aria-hidden="true">&laquo;</span>';
+		html += '<span aria-hidden="true">&laquo;</span>';
 		html += '</a>';
 	    html += '</li>';
 		
@@ -117,7 +117,7 @@ function makePageLink(data) {
 			fn = "javascript:pageList(" + (data.endPage + 1) + ");";
 		}
 		html += '<a href="' + fn + '" aria-label="Next">';
-		html += '    <span aria-hidden="true">&raquo;</span>';
+		html += '<span aria-hidden="true">&raquo;</span>';
 		html += '</a>';
 	    html += '</li>';
 	}
@@ -125,23 +125,20 @@ function makePageLink(data) {
 	$("nav > ul.pagination").html(html);
 }
 
-// 댓글 목록 조회
 function pageList(pageNo) {
 	if (pageNo === undefined) {
 		pageNo = 1;
 	}
 	$.ajax({
-		url: "/10_mvc/board/list.do",
+		url: "/b90m2t2/board/list.do",
 		data: {pageNo: pageNo},
 		dataType: "json"
 	})
 	.done(makePageList);
 }
-
-// 페이지 로딩시 목록 조회 ajax 호출
+  
 pageList();
 
-	
 </script>
 </body>
 </html>

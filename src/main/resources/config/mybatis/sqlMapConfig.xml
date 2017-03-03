@@ -13,8 +13,8 @@
 		<typeAlias alias="board" type="kr.co.camp.board.vo.BoardVO" />
 		<typeAlias alias="boardFile" type="kr.co.camp.board.vo.BoardFileVO" />
 		<typeAlias alias="boardComment" type="kr.co.camp.board.vo.BoardCommentVO" />
-		<typeAlias alias="login" type="kr.co.camp.board.vo.MemberVO" />
-		<typeAlias alias="search" type="kr.co.camp.board.vo.SearchVO" />
+		<typeAlias alias="login" type="kr.co.camp.repository.vo.SearchVO" />
+		<typeAlias alias="search" type="kr.co.camp.repository.vo.SearchVO" />
 		
 		<!-- naming rule: 도메인명+프로젝트명 or 프로젝트 구성단위(사용자,관리자 등)+기능명 -->
 	</typeAliases>

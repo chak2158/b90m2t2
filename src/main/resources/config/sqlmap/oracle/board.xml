@@ -19,9 +19,15 @@
 	</resultMap>
 
     <select id="selectBoard" parameterType="search" resultMap="boardMap">
-    	select *
-    	  from tb_review_board
-    	 order by review_no desc
+    	  		select *	
+    	  from ( 
+    	  		 select rownum rnum, a.*
+    	           from (select *  
+    	                   from tb_review_board 
+    	                  order by review_no desc 
+    	                ) a 
+    	       )  
+		   	 where rnum between #{begin} and #{end} 
     </select> 
    
    <select id="selectBoardCount" parameterType="search" resultType="int">

@@ -1,4 +1,4 @@
-package kr.co.camp.board.vo;
+package kr.co.camp.repository.vo;
 
 public class PageResultVO {
 	private int listSize = 10;
@@ -22,7 +22,6 @@ public class PageResultVO {
 		
 		lastPage = (int)Math.ceil(count / (double)listSize);
 		
-		// 현재 페이지에 해당하는 탭 위치, 탭 시작 페이지, 탭 끝 페이지, 이전.다음 페이지 존재 여부 
 		int currTab   = (pageNo  -1) / tabSize + 1;
 		beginPage = (currTab -1) * tabSize + 1;  
 		endPage   = (currTab * tabSize < lastPage) ? currTab * tabSize : lastPage;
