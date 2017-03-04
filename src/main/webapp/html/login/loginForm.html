@@ -1,22 +1,56 @@
 <section class="container login-form">
-	<section>
-		<form method="post" action="" role="login">
-			<img src="../../assets/images/logo.png" alt="" class="img-responsive" />
-		
-			<div class="form-group">
-				<input type="email" name="email" required class="form-control" placeholder="Enter email or nickname" />
-				<span class="glyphicon glyphicon-user"></span>
-			</div>
+		<section>
+			<form method="post" action="/b90m2t2/login/join.do" role="login">
+				<img src="../../assets/images/logo.png" alt="" class="img-responsive" />
 			
-			<div class="form-group">
-				<input type="password" name="password" required class="form-control" placeholder="Enter password" />
-				<span class="glyphicon glyphicon-lock"></span>
-			</div>
-			
-			<button type="submit" name="go" class="btn btn-primary btn-block">Login Now</button>
-			
-			<a href="#">Reset password</a> or <a href="#">create account</a> 
-		</form>
-	</section>
+				<div class="form-group">
+					<input type="text" name="memberId" required class="form-control" placeholder="Enter email or nickname" />
+					<span class="glyphicon glyphicon-user"></span>
+				</div>
+				
+				<div class="form-group">
+					<input type="password" name="password" required class="form-control" placeholder="Enter password" />
+					<span class="glyphicon glyphicon-lock"></span>
+				</div>
+				<a href="#">Reset password</a> or <a href="#">create account</a> 
+			</form>
+				<button type="button" id="join" class="btn btn-primary btn-block">Login Now</button>
+		</section>
 </section>
 
+<script>
+
+
+$("#join").click(function () {
+	
+	var f = document.querySelector("form[role=login]");
+	
+	if(isEmpty(f.memberId,"아이디를 입력하세요")) return;
+	if(isEmpty(f.password,"패스워드를 입력하세요")) return;
+	
+	$.ajax({
+		url:"/b90m2t2/login/join.do",
+		dataType:"json",
+		type:"POST",
+		data:{memberId: $("input[name=memberId]").val(),  
+		password: $("input[name=password]").val()}
+	}).done(function(result) {
+		
+		if(result){
+			
+			$("ul#login > li").addClass("hidden");
+			$("li#myPageMenu").removeClass("hidden");
+			$("li#myPageMenu").addClass("show");
+			$("#content").load("main.html");
+			
+		}else{
+			
+			alert("무언가 틀렸습니다.");
+			
+		}
+		
+	});
+	
+});
+
+</script>

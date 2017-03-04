@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="../../assets/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css" />
 <style>
+
 #login {
 	list-style: none;
 }
@@ -16,25 +17,35 @@
 #login li a {
 	margin: 10px;
 }
+
+.hidden{
+	opacity:0;
+}
+.show{
+	opacity:1;
+}
+
 </style>
 </head>
 <body>
 
 <div id="header">
 	<ul id="login">
-		<li>
-			<a href="javascript:goLoginForm()">
-			로그인
-			</a>
-		</li>
-		<li>
-			<a href="#">
-			 회원가입
-			</a>
+			<li>
+				<a href="javascript:goLoginForm();">
+				로그인
+				</a>
+			</li>
+			<li>
+				<a href="javascript:goRegiForm();">
+				 회원가입
+				 </a>
+			</li>
+		<li id="myPageMenu" class="hidden">
+			마이페이지
 		</li>
 	</ul>
 </div>
-
 
 <br><br><br>
 
@@ -42,7 +53,15 @@
 <div id="content">
 
 
+
+
 </div>
+
 </body>
+
+<script src="../js/validUtil.js"></script>
 <script src="../js/login.js"></script>
 </html>
+
+
+

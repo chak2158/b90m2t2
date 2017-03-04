@@ -1,10 +1,9 @@
 package kr.co.camp.service;
 
-import java.util.List;
-
-import kr.co.camp.repository.vo.Board;
-import kr.co.camp.repository.vo.SearchVO;
+import kr.co.camp.repository.vo.CampMemberVO;
 
 public interface LoginService {
-
+	
+	public CampMemberVO join(CampMemberVO user) throws Exception; 
+	
 }

@@ -4,17 +4,22 @@
 	
 <mapper namespace="kr.co.camp.repository.mapper.LoginMapper">
 	
-	<resultMap id="boardMap" type="board">
-		<result property="no" column="no"/>
-		<result property="title" column="title"/>
-		<result property="writer" column="writer"/>
-		<result property="content" column="content"/>
-		<result property="regDate" column="reg_date"/>
+	<resultMap id="memberMap" type="campMemberVO" >
+		<result property="memberId" column="member_id" />
+		<result property="passowrd" column="passoword" />
+		<result property="homeAddr" column="home_addr" />
+		<result property="birthYear" column="birth_year" />
+		<result property="birthMonth" column="birth_month" />
+		<result property="birthDate" column="birth_date" />
+		<result property="phoneNumber" column="phone_number" />
 	</resultMap>
 	
-	<select id="selectBoard" parameterType="board" resultMap="boardMap">
-		 select *
-		   from tb_board
+	<select id="retrieveMember" parameterType="campMemberVO" resultMap="memberMap">
+		select *
+		  from tb_camp_member
+		where member_id = #{memberId} and
+			  password = #{password}
 	</select>
+	
 
 </mapper>
