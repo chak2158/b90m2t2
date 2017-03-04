@@ -10,12 +10,4 @@ import kr.co.camp.repository.vo.SearchVO;
 
 @Service
 public class LoginServiceImpl implements LoginService{
-
-	@Autowired
-	private LoginMapper dao;
-	
-	public List<Board> list(SearchVO search) throws Exception {
-		List<Board> list = dao.selectBoard();
-		return list;
-	};
 }

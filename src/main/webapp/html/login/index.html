@@ -6,30 +6,43 @@
 <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../assets/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css" />
+<style>
+#login {
+	list-style: none;
+}
+#login li {
+	display:inline;
+}
+#login li a {
+	margin: 10px;
+}
+</style>
 </head>
 <body>
 
 <div id="header">
-
-
+	<ul id="login">
+		<li>
+			<a href="javascript:goLoginForm()">
+			로그인
+			</a>
+		</li>
+		<li>
+			<a href="#">
+			 회원가입
+			</a>
+		</li>
+	</ul>
 </div>
 
 
-<br><br>
+<br><br><br>
 
 
 <div id="content">
 
 
-
 </div>
-<script>
-	$.ajax({
-		url:"/b90m2t2/login/login.do",
-		dataType:"json"
-	}).done(function(result) {
-		console.log(result);
-	});
-</script>
 </body>
+<script src="../js/login.js"></script>
 </html>

@@ -19,10 +19,4 @@ public class LoginController {
 	@Autowired
 	private LoginService service;
 	
-	@RequestMapping("/login.do")
-	public List<Board> list(SearchVO search) throws Exception {
-		System.out.println("로긴");
-		return service.list(search);
-	}
-	
 }
