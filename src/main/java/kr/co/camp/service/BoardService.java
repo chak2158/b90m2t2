@@ -16,7 +16,7 @@ public interface BoardService {
 
 	public Map<String, Object> list(SearchVO search) throws Exception;
 	
-	public Map<String, Object> detail(int no) throws Exception;
+	//public Map<String, Object> detail(SearchVO search) throws Exception;
 	
 	public void delete(int no) throws Exception;
 	
@@ -27,4 +27,6 @@ public interface BoardService {
 	public List<CommentVO> commentList(int no) throws Exception ;
 	
 	public List<CommentVO> commentDelete(CommentVO comment) throws Exception ;
+
+	Map<String, Object> detail(int no) throws Exception;
 }

@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.camp.repository.mapper.BoardMapper;
-import kr.co.camp.repository.vo.BoardFileVO;
 import kr.co.camp.repository.vo.BoardVO;
 import kr.co.camp.repository.vo.CommentVO;
 import kr.co.camp.repository.vo.PageResultVO;
+import kr.co.camp.repository.vo.ReviewImageVO;
 import kr.co.camp.repository.vo.SearchVO;
 
 @Service
@@ -23,7 +23,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void write(Map<String, Object> param) throws Exception {
 		int no = dao.insertBoard((BoardVO)param.get("board"));
-		BoardFileVO boardFile = (BoardFileVO)param.get("boardFile");
+		ReviewImageVO boardFile = (ReviewImageVO)param.get("boardFile");
 		if (boardFile != null) {
 			boardFile.setNo(no);
 			dao.insertBoardFile(boardFile);
