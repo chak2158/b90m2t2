@@ -17,10 +17,9 @@
 				<button type="button" id="join" class="btn btn-primary btn-block">Login Now</button>
 		</section>
 </section>
+
 <script src="../js/validUtil.js"></script>
 <script>
-
-
 $("#join").click(function () {
 	
 	var f = document.querySelector("form[role=login]");
@@ -36,20 +35,19 @@ $("#join").click(function () {
 		password: $("input[name=password]").val()}
 	}).done(function(result) {
 		
-		if(result){
+		if(result.loginCheck){
 			
-			$("ul#login > li").addClass("hidden");
-			$("li#myPageMenu").removeClass("hidden");
-			$("li#myPageMenu").addClass("show");
+			$("ul#login > span#loginOut").addClass("hidden");
+			$("ul#login > span#loginIn").removeClass("hidden");
+			$("ul#login > span#loginIn").addClass("show");
 			$("#content").load("main.html");
+			member=result.member;
 			
 		}else{
 			
 			alert("무언가 틀렸습니다.");
 			
 		}
-		
 	});
-	
 });
 </script>

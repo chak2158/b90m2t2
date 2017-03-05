@@ -9,9 +9,18 @@ public class CampMemberVO {
 	 private char birthMonth; 
 	 private char birthDate; 
 	 private String phoneNumber; 
+	 private String email;
 
 
-	 public void setMemberId(String memberId){
+	 public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setMemberId(String memberId){
 	      this.memberId=memberId;
 	 }
 

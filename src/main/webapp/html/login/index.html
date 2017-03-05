@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="../js/login/loginVariables.js" ></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link href="http://fonts.googleapis.com/css?family=Lato:100italic,100,300italic,300,400italic,400,700italic,700,900italic,900" rel="stylesheet" type="text/css">
 <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
@@ -31,19 +32,29 @@
 
 <div id="header">
 	<ul id="login">
-			<li>
-				<a href="javascript:goLoginForm();">
-				로그인
-				</a>
-			</li>
-			<li>
-				<a href="javascript:goRegiAgreeForm();">
-				 회원가입
-				 </a>
-			</li>
-		<li id="myPageMenu" class="hidden">
-			마이페이지
-		</li>
+			<span id="loginOut">
+				<li>
+					<a href="javascript:goLoginForm();">
+					로그인
+					</a>
+				</li>
+				
+				<li>
+					<a href="javascript:goRegiAgreeForm();">
+					 회원가입
+					 </a>
+				</li>
+			</span>
+			<span id="loginIn" class="hidden">
+				<li>
+					<a href="javascript:logOut();">
+					로그아웃
+					</a>
+				</li>
+				<li>
+					마이페이지
+				</li>
+			</span>
 	</ul>
 </div>
 
@@ -52,13 +63,10 @@
 
 <div id="content">
 
-
-
-
 </div>
 
 </body>
-<script src="../js/login.js"></script>
+<script src="../js/login/movingForm.js"></script>
 </html>
 
 

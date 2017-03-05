@@ -1,6 +1,5 @@
 <br><br><br><br>
 <div style="margin:0 auto;width:700px">
-	<form id="contact-form" action="" name="form" method="post">
     	<p class="inputfield"><label for="message">캠프파이어 약관동의</label>
     	<br>
     	<input type="checkbox" id="agree01" name="agree01"/>동의<p>
@@ -41,19 +40,43 @@
 가. 회사 내부 방침에 의한 정보보유 사유 
 - 부정이용기록(부정가입, 징계기록 등의 비정상적 서비스 이용기록) 보존 항목 : 가입인증 휴대폰 번호, 만 14세 미만 회원의 경우 법정대리인 DI보존 이유 : 부정 가입 및 이용 방지보존 기간 : 1년※ ‘부정이용기록’이란 부정 가입 및 운영원칙에 위배되는 게시글 작성 등으로 인해 회사로부터 이용제한 등을 당한 기록입니다.
     </textarea>
-    		<p><input type="checkbox" id="allAgree" name="allAgree" onclick="allChk()"/> <label for="allAgree">모두 동의</label></p>
+    
+    <p><input type="checkbox" id="allAgree" name="allAgree"/> <label for="allAgree">모두 동의</label></p>
     		
 	<input class="btn btn-info" type="button" id="agree" value="동의" /> &nbsp;
 	<input class="btn btn-danger" type="button" id="disagree" value="비동의" />
-	</form>
 	</div>
 </div>
 
 <script>
-
-	$("#disagree").click(){
+	
+	$("#agree").click(function () {
+		
+		if(!$("#agree01").prop("checked")){
+			alert("캠프파이어 약관동의 하십시오");
+			return;
+		}
+		if(!$("#agree02").prop("checked")){
+			alert("개인정보 수집 및 이용에 대한 안내 동의가 필요합니다.");
+			return;
+		}
+		
+		$("div#content").load("")
+		
+	})
+	
+	$("#allAgree").click(function() {
+		
+		console.log("올체크");
+		$("input[type=checkbox]:lt(2)").each(function() {
+			this.checked = $("#allAgree").prop("checked");
+		});
+		
+	})
+	
+	$("#disagree").click(function() {
 		$("div#content").load("main.html");
-	}
+	})
 
 </script>
 

@@ -27,6 +27,7 @@ create table tb_camp_member(
 	birth_year char(4) not null,
 	birth_month char(2) not null,
 	birth_date char(2) not null,
+	email varchar(50) not null,
 	phone_number varchar2(15) null
 );
 

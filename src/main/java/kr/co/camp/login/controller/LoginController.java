@@ -1,5 +1,8 @@
 package kr.co.camp.login.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -20,25 +23,28 @@ public class LoginController {
 	private LoginService service;
 	
 	@RequestMapping("/join.do")
-	public boolean join(CampMemberVO user,HttpServletRequest request) throws Exception {
+	public Map<String, Object> join(CampMemberVO user,HttpServletRequest request) throws Exception {
 		
+		Map<String, Object> param = new HashMap<>();
 		CampMemberVO member = service.join(user);
-		
 		// 해당하는 멤버가 있을 경우.
+		
 		if(member != null) {
 			// 로그인한 멤버 세션 영역 설정.
 			HttpSession session = request.getSession();
 			session.setAttribute("member", member);
 			
-			return true;
+			param.put("member", member);
+			param.put("loginCheck", true);
 			
+			return param;
 		}
 		// 해당하는 멤버 없을 경우.
 		else{
-			
-			return false;
-			
+			param.put("loginCheck", false);
+			return param;
 		}
+		
 	}
 	
 }

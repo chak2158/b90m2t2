@@ -1,6 +1,3 @@
-/**
- * 
- */
 function isEmpty(obj, msg) {
 	if (obj.value == "") {
 		alert(msg);
@@ -9,19 +6,3 @@ function isEmpty(obj, msg) {
 	}	
 	return false;
 }
-//
-//function okAgree() {
-//
-//}
-//
-//$("#agree").click() {
-//	
-//	
-//	
-//}
-//
-//$("#disagree").click() {
-//	
-//	console.log("ㅋㅋㅋ");
-//	
-//}
