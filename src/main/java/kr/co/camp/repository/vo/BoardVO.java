@@ -13,6 +13,7 @@ public class BoardVO {
 	private String mapLatitude;
 	private String mapLongitude;
 	private int viewCnt;
+	
 	public int getReviewNo() {
 		return reviewNo;
 	}

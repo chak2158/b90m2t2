@@ -2,9 +2,9 @@ package kr.co.camp.repository.mapper;
 
 import java.util.List;
 
-import kr.co.camp.repository.vo.BoardFileVO;
 import kr.co.camp.repository.vo.BoardVO;
 import kr.co.camp.repository.vo.CommentVO;
+import kr.co.camp.repository.vo.ReviewImageVO;
 import kr.co.camp.repository.vo.SearchVO;
 
 public interface BoardMapper {
@@ -22,8 +22,8 @@ public interface BoardMapper {
 	/* =================================================== */
 	/* 파일 관련                                             */
 	/* =================================================== */
-	public void insertBoardFile(BoardFileVO boardFile) throws Exception;
-	public BoardFileVO selectBoardFileByNo(int no) throws Exception;
+	public void insertBoardFile(ReviewImageVO boardFile) throws Exception;
+	public ReviewImageVO selectBoardFileByNo(int no) throws Exception;
 	
 	
 	/* =================================================== */

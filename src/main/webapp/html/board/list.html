@@ -1,4 +1,18 @@
-	<div class="table-responsive">
+<div class="container">
+	<div class="header"></div>
+	<div class="content">
+		<ol class="breadcrumb">
+		  <li><a href="#1">Home</a></li>
+		  <li class="active">자유게시판</li>
+		</ol>
+		<hr>		
+		<div class="row">
+		    <div class="col-md-10"></div>
+		    <div class="col-md-2" style="text-align: right">
+				전체 <span id="count"></span>개
+		    </div>
+		</div>	
+		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>
 				<tr>
@@ -11,125 +25,57 @@
 				<tbody id="pageTable">
 				</tbody>
 			</table>
-	</div>
-	
-	<div>	
+		</div>
+		
 		<nav>
 			<ul class="pagination">
 			</ul>
 		</nav>		
-	</div>
-	
+	</div>		
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 
-function makePageList(result) {
-	$("#count").text(result.pageResult.count);
-	console.log(result);
-	var html = "";
-	for (var i = 0; i < result.list.length; i++) {
-		var board = result.list[i];
-		html += '<tr>';
-		html += '	<td>' + board.reviewNo + '</td>';
-		html += '	<td>' + board.title + '</td>';
-		html += '	<td>' + board.content + '</td>';
-		html += '	<td>' + board.viewCnt + '</td>';
-		
-		var date = new Date(board.regDate);
-		var time = date.getFullYear() + "-" 
-		         + (date.getMonth() + 1) + "-" 
-		         + date.getDate() + " "
-		         + date.getHours() + ":"
-		         + date.getMinutes() + ":"
-		         + date.getSeconds();
-		html += '<td>' + time + '</td>';  
-		html += '</tr>';
-	}
-	if (!result.list.length) {
-		html += '<tr><td colspan="4">게시물이 존재하지 않습니다.</td></tr>';
-	}
-	$("#pageTable").html(html);
+// 	function listCancel(reviewNo) {
+// 		$("#row" + reviewNo).show();
+// 		$("#modRow" + reviewNo).remove();
+// 	}
 	
-	makePageLink(result.pageResult);
-	$("#content").load("html/list.html");
-}
-
-function makePageLink(data) {
-	var html = "";
-	if (data.count != 0) {
-		var clz = "";
-		if (data.prev == false) {
-			clz = "disabled";
-		}
-		html += '<li class="' + clz + '">';
-		
-		var fn = "";
-		
-		if (data.prev == true) {
-			fn = "javascript:pageList(" + (data.beginPage - 1) + ");";
-		}
-		html += '<a href="' + fn + '" aria-label="Previous">';
-		html += '<span aria-hidden="true">&laquo;</span>';
-		html += '</a>';
-	    html += '</li>';
-		
-	    for (var i = data.beginPage; i <= data.endPage; i++) {
-	    	if (i == data.pageNo) {
-			    html += '<li class="active"><a href="#1">' + i + '</a></li>';
-	    	}
-	    	else {
-	    		html += '<li><a href="javascript:pageList(' + i + ');">' + i + '</a></li>';
-	    	}
-	    }
-	    
-		clz = "";
-		if (data.next == false) {
-			clz = "disabled";
-		}
-		html += '<li class="' + clz + '">';
-		
-		fn = "";
-		
-		if (data.next == true) {
-			fn = "javascript:pageList(" + (data.endPage + 1) + ");";
-		}
-		html += '<a href="' + fn + '" aria-label="Next">';
-		html += '<span aria-hidden="true">&raquo;</span>';
-		html += '</a>';
-	    html += '</li>';
-	}
-	
-	$("nav > ul.pagination").html(html);
-}
-
-function pageList(pageNo) {
-	if (pageNo === undefined) {
-		pageNo = 1;
-	}
-	$.ajax({
-		url: "/b90m2t2/board/list.do",
-		data: {pageNo: pageNo},
-		dataType: "json"
-	})
-	.done(makePageList);
-}
+// function detailBoard(pageNo) {
+// 	$.ajax({
+// 		url: "/b90m2t2/board/detail.do",
+// 		dataType: "json",
+// 		data: {reviewNo:reviewNo}
+// 	})
+// 	.done(makeDetailBoard);
+// }
   
-pageList();
-
-$("#content").load();
+// 	detailBoard();
 
 </script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
 
 
 
