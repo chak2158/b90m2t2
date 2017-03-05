@@ -3,6 +3,7 @@ function goLoginForm(){
 }
 	
 
-function goRegiForm(){
+function goRegiAgreeForm(){
+	$("div#content").load("registerAgreeForm.html")
 	
 }

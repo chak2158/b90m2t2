@@ -94,3 +94,11 @@ form[role=login] {
             background-color:#ccc;
             text-align: center;
 }
+
+#content{
+	width:80%;
+	height:1000px;
+	border:1px solid black;	
+	margin:0 auto;
+}
+

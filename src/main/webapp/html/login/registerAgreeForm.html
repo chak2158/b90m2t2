@@ -1,5 +1,9 @@
-	<form id="contact-form" action="${pageContext.request.contextPath}/useditem/memberJoinForm" name="form" method="post">
-    	<p class="inputfield"><label for="message">캠프파이어 약관동의</label><input type="checkbox" id="agree01" name="agree01"/>동의<p>
+<br><br><br><br>
+<div style="margin:0 auto;width:700px">
+	<form id="contact-form" action="" name="form" method="post">
+    	<p class="inputfield"><label for="message">캠프파이어 약관동의</label>
+    	<br>
+    	<input type="checkbox" id="agree01" name="agree01"/>동의<p>
     	<textarea name="message" id="message" rows="10" cols="100" >
 제 1 조 (목적)
 이 약관은 블로그 주식회사 ("회사" 또는 "블로그")가 제공하는 블로그 및 블로그 관련 제반 서비스의 이용과 관련하여 회사와 회원과의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.
@@ -17,7 +21,9 @@
 ④회사가 전항에 따라 개정약관을 공지 또는 통지하면서 회원에게 30일 기간 내에 의사표시를 하지 않으면 의사표시가 표명된 것으로 본다는 뜻을 명확하게 공지 또는 통지하였음에도 회원이 명시적으로 거부의 의사표시를 하지 아니한 경우 회원이 개정약관에 동의한 것으로 봅니다. 
 ⑤회원이 개정약관의 적용에 동의하지 않는 경우 회사는 개정 약관의 내용을 적용할 수 없으며, 이 경우 회원은 이용계약을 해지할 수 있습니다. 다만, 기존 약관을 적용할 수 없는 특별한 사정이 있는 경우에는 회사는 이용계약을 해지할 수 있습니다. 
     </textarea>
-    	<p class="inputfield"><label for="message">캠프파이어 개인정보 수집 및 이용에 대한 안내</label><input type="checkbox" id="agree02" name="agree02"/>동의</p>
+    	<p class="inputfield"><label for="message">캠프파이어 개인정보 수집 및 이용에 대한 안내</label>
+    	<br>
+    	<input type="checkbox" id="agree02" name="agree02"/>동의</p>
     		<textarea name="message" id="message" rows="10" cols="100" >
 정보통신망법 규정에 따라 블로그에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
 1. 수집하는 개인정보의 항목
@@ -37,13 +43,17 @@
     </textarea>
     		<p><input type="checkbox" id="allAgree" name="allAgree" onclick="allChk()"/> <label for="allAgree">모두 동의</label></p>
     		
-    		
-    	<div class="row">
-		    <div class="col-md-8"></div>
-		    <div class="col-lf-3">
-			<input class="btn btn-info" type="button" value="동의" onclick="okAgree();"/> &nbsp;
-			<input class="btn btn-danger" type="button" value="비동의" onclick="noAgree();"/>
-		    </div>
-		</div>
-  		</form>
-  		</div>
+	<input class="btn btn-info" type="button" id="agree" value="동의" /> &nbsp;
+	<input class="btn btn-danger" type="button" id="disagree" value="비동의" />
+	</form>
+	</div>
+</div>
+
+<script>
+
+	$("#disagree").click(){
+		$("div#content").load("main.html");
+	}
+
+</script>
+

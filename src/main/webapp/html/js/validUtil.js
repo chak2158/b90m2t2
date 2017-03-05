@@ -9,3 +9,19 @@ function isEmpty(obj, msg) {
 	}	
 	return false;
 }
+//
+//function okAgree() {
+//
+//}
+//
+//$("#agree").click() {
+//	
+//	
+//	
+//}
+//
+//$("#disagree").click() {
+//	
+//	console.log("ㅋㅋㅋ");
+//	
+//}
