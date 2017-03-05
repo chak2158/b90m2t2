@@ -21,5 +21,43 @@
 			  password = #{password}
 	</select>
 	
+	<insert id="insertMember" parameterType="campMemberVO">
+		insert into tb_camp_member ( 
+			member_id,
+			password,
+			email,
+			phone_number,
+			birth_year,
+			birth_month,
+			birth_date,
+			home_addr
+		) values ( 
+			#{memberId},
+			#{password},
+			#{email},
+			#{phoneNumber},
+			#{birthYear},
+			#{birthMonth},
+			#{birthDate},
+			#{homeAddr}
+		)
+	</insert>
+	
+	<insert id="insertProfileImg" parameterType="memberProfileImgVO">
+		insert into tb_member_profile_img ( 
+			member_id,
+			ori_name, 
+			system_name,
+			file_size,
+			file_path
+		) values ( 
+			#{memberId},
+			#{oriName},
+			#{systemName},
+			#{fileSize},
+			#{filePath}
+		)
+	</insert>
+	
 
 </mapper>

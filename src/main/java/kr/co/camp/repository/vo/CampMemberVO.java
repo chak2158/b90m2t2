@@ -5,9 +5,9 @@ public class CampMemberVO {
 	 private String memberId; 
 	 private String password; 
 	 private String homeAddr; 
-	 private char birthYear; 
-	 private char birthMonth; 
-	 private char birthDate; 
+	 private String birthYear; 
+	 private String birthMonth; 
+	 private String birthDate; 
 	 private String phoneNumber; 
 	 private String email;
 
@@ -44,31 +44,31 @@ public class CampMemberVO {
 	      return homeAddr;
 	 }
 
-	 public void setBirthYear(char birthYear){
-	      this.birthYear=birthYear;
-	 }
+	 public String getBirthYear() {
+		return birthYear;
+	}
 
-	 public char getBirthYear(){
-	      return birthYear;
-	 }
+	public void setBirthYear(String birthYear) {
+		this.birthYear = birthYear;
+	}
 
-	 public void setBirthMonth(char birthMonth){
-	      this.birthMonth=birthMonth;
-	 }
+	public String getBirthMonth() {
+		return birthMonth;
+	}
 
-	 public char getBirthMonth(){
-	      return birthMonth;
-	 }
+	public void setBirthMonth(String birthMonth) {
+		this.birthMonth = birthMonth;
+	}
 
-	 public void setBirthDate(char birthDate){
-	      this.birthDate=birthDate;
-	 }
+	public String getBirthDate() {
+		return birthDate;
+	}
 
-	 public char getBirthDate(){
-	      return birthDate;
-	 }
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
 
-	 public void setPhoneNumber(String phoneNumber){
+	public void setPhoneNumber(String phoneNumber){
 	      this.phoneNumber=phoneNumber;
 	 }
 

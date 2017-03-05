@@ -5,7 +5,7 @@ public class MemberProfileImgVO {
 	 private String memberId; 
 	 private String oriName; 
 	 private String systemName; 
-	 private int fileSize; 
+	 private long fileSize; 
 	 private String filePath; 
 
 
@@ -33,15 +33,15 @@ public class MemberProfileImgVO {
 	      return systemName;
 	 }
 
-	 public void setFileSize(int fileSize){
-	      this.fileSize=fileSize;
-	 }
+	 public long getFileSize() {
+		return fileSize;
+	}
 
-	 public int getFileSize(){
-	      return fileSize;
-	 }
+	public void setFileSize(long fileSize) {
+		this.fileSize = fileSize;
+	}
 
-	 public void setFilePath(String filePath){
+	public void setFilePath(String filePath){
 	      this.filePath=filePath;
 	 }
 
