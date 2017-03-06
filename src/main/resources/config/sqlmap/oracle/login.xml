@@ -21,6 +21,12 @@
 			  password = #{password}
 	</select>
 	
+	<select id="retrieveMemberId" parameterType="string" resultMap="memberMap">
+		select *
+		  from tb_camp_member
+		where member_id = #{memberId}
+	</select>
+	
 	<insert id="insertMember" parameterType="campMemberVO">
 		insert into tb_camp_member ( 
 			member_id,

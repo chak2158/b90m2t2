@@ -1,29 +1,51 @@
-$("input[type=file]").change(function(e) {
-		
-   e.preventDefault();
 
-	var file = $("input[type=file]")[0].files[0];
-	var reader = new FileReader();
+// 프로필 사진 출력
+//$("input[type=file]").change(function(e) {
+//		
+//   e.preventDefault();
+//
+//	var file = $("input[type=file]")[0].files[0];
+//	var reader = new FileReader();
+//
+//    reader.onload = function (event) {
+//	  
+//    var img = new Image();
+//    img.src = event.target.result;
+//    // note: no onload required since we've got the dataurl...I think! :)
+//    
+//    img.width = 300;
+//    img.height = 300;
+//    
+//    holder.innerHTML = '';
+//	    holder.appendChild(img);
+//	 };
+//	 reader.readAsDataURL(file);
+//	 return false;
+//});
 
-    reader.onload = function (event) {
-	  
-    var img = new Image();
-    img.src = event.target.result;
-    // note: no onload required since we've got the dataurl...I think! :)
+function loadFile(event) {
+    	
+	var file = event.target.files[0];
+	if (file.type.substring(0, 5) != 'image') {
+		alert("이미지를 선택하세요");
+		return false;
+	}
+	if (file.size > 10000 * 1024) {
+		alert("100kb 미만의 파일을 선택하세요");
+		return false;
+	}
+	
+    var reader = new FileReader();
+    reader.onload = function(){
+        var output = "<img src="+reader.result+" alt='' width='200' height='150'/>";
+	    $('.img').html(output);
+    };
     
-    img.width = 300;
-    img.height = 300;
-    
-    holder.innerHTML = '';
-	    holder.appendChild(img);
-	    
-	 };
-	  
-	 reader.readAsDataURL(file);
+    reader.readAsDataURL(file);
+        
+};   
 
-	 return false;
-});
-
+// 생년 월일 셀렉박스 만들기.
 for(var i=1950; i<=2017;i++){
 	var temp = "<option value="+i+">"+i+"</option>";
 	var year = $("#year").html();
@@ -41,6 +63,31 @@ for(var i=1; i<=31;i++){
 	var date = $("#date").html();
 	$("#date").html(date+temp);
 }
+
+// 아이디 중복 검사.
+$("input[id='id']").keyup(function() {
+	
+	$.ajax({
+		url:"/b90m2t2/login/checkId.do",
+		type:"POST",
+		data:{id: $("input[id=id]").val()}
+	}).done(function(result){
+		
+		console.log(result);
+		
+		if(result=='false'){
+			$("#msg").html("사용가능한 아이디 입니다.").css("color","blue");
+		}else if(result=='true'){
+			$("#msg").html("이미 사용중 입니다.").css("color","red");
+		}
+		
+		if( $("input[id=id]").val()==""){
+			$("#msg").html("");
+		}
+		
+	});
+	
+});
 
 
 $("#joinBtn").click(function() {
@@ -149,9 +196,9 @@ $("#joinBtn").click(function() {
 			}
 		}
 	});
-
 	
 	
 	
 });
+
 

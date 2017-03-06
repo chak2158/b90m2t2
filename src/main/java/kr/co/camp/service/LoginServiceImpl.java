@@ -28,9 +28,11 @@ public class LoginServiceImpl implements LoginService{
 		if(profileImg!=null) {
 			dao.insertProfileImg((profileImg));
 		}
-		
 	}
 	
+	public boolean checkId(String id) throws Exception {
+		return dao.retrieveMemberId(id) != null ? true : false;
+	}
 	
 	
 }

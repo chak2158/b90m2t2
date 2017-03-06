@@ -9,7 +9,6 @@ public interface LoginMapper {
 	public CampMemberVO retrieveMember(CampMemberVO user) throws Exception;		
 	public void insertMember(CampMemberVO user) throws Exception;
 	public void insertProfileImg(MemberProfileImgVO profile) throws Exception;
-	
-	
+	public CampMemberVO retrieveMemberId(String id) throws Exception;		
 	
 }
