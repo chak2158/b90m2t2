@@ -1,66 +1,66 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Place searches</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-    </style>
-    <script>
-var map;
-var infowindow;
+<head>
+<script src="../js/login/loginVariables.js" ></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link href="http://fonts.googleapis.com/css?family=Lato:100italic,100,300italic,300,400italic,400,700italic,700,900italic,900" rel="stylesheet" type="text/css">
+<script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../assets/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/css/styles.css" />
+<style>
 
-function initMap() {
-  var pyrmont = {lat: -33.867, lng: 151.195};
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: pyrmont,
-    zoom: 15
-  });
-
-  infowindow = new google.maps.InfoWindow();
-
-  var service = new google.maps.places.PlacesService(map);
-  service.nearbySearch({
-    location: pyrmont,
-    radius: 500,
-    types: ['store']
-  }, callback);
+#login {
+	list-style: none;
+}
+#login li {
+	display:inline;
+}
+#login li a {
+	margin: 10px;
+}
+#content{
+	position: absolute;
+	margin: 70px;
 }
 
-function callback(results, status) {
-  if (status === google.maps.places.PlacesServiceStatus.OK) {
-    for (var i = 0; i < results.length; i++) {
-      createMarker(results[i]);
-    }
-  }
+.hidden{
+	opacity:0;
 }
-
-function createMarker(place) {
-  var placeLoc = place.geometry.location;
-  var marker = new google.maps.Marker({
-    map: map,
-    position: place.geometry.location
-  });
-
-  google.maps.event.addListener(marker, 'click', function() {
-    infowindow.setContent(place.name);
-    infowindow.open(map, this);
-  });
+.show{
+	opacity:1;
 }
+</style>
+</head>
+<body>
 
-    </script>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkd_UadYzaVrZo1iLoAVTLtV3iSkl_MwI&libraries=places&callback=initMap" async defer></script>
-  </body>
+    <div class="navbar-nav navbar-inverse navbar-fixed-top">
+        <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html" text="blue"><img src="css/Campfire50x50.png" alt="" style="margin:-20px;">CAMPFIRE</a>
+        </div> 
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="javascript:goMainForm();">메인</a></li>
+              <li><a href="javascript:goLoginForm();">로그인</a></li>
+              <li><a href="javascript:logOut();"> 로그아웃</a></li>
+              <li><a href="tables.html"> 마이페이지</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+    </div>
+
+
+<div id="content">
+
+</div>
+
+</body>
+<script src="../js/login/movingForm.js"></script>
+<script src="../js/main/movingForm.js"></script>
 </html>

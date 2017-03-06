@@ -1,3 +1,11 @@
+delete 
+from tb_member_profile_img 
+
+delete
+from tb_camp_member
+
+
+
 select * from tb_camp_member
 
 insert into tb_camp_member (
@@ -22,15 +30,3 @@ insert into tb_camp_member (
 
 select * from tb_camp_member
 select * from tb_member_profile_img
-
-delete 
-from tb_member_profile_img 
-
-delete
-from tb_camp_member
-
-
-where member_id = 'memosha'
-
-
-
