@@ -8,7 +8,7 @@ function goRegiAgreeForm(){
 }
 
 function logOut() {
-	member=null;
+	localStorage.removeItem("member");
 	$("ul#login > span#loginOut").removeClass("hidden");
 	$("ul#login > span#loginOut").addClass("show");
 	$("ul#login > span#loginIn").removeClass("show");
@@ -16,6 +16,5 @@ function logOut() {
 	$("#content").load("main.html");
 }
 
-window.onunload = function () {
-	member=null;
-}
+
+

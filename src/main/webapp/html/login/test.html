@@ -1,12 +1,12 @@
 <html>
 <head>
-  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="962372991834-i0bfgo3fah7fhhuo24n757h55crapn4h.apps.googleusercontent.com">
 </head>
 <body>
   <div id="my-signin2"></div>
-  <script>
+  <script>  
     function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getEmail());
     }
     function onFailure(error) {
       console.log(error);
@@ -22,7 +22,36 @@
         'onfailure': onFailure
       });
     }
-  </script>
+
+    var initClient = function() {
+        gapi.load('auth2', function(){
+            /**
+             * Retrieve the singleton for the GoogleAuth library and set up the
+             * client.
+             */
+            auth2 = gapi.auth2.init({
+                client_id: '962372991834-i0bfgo3fah7fhhuo24n757h55crapn4h.apps.googleusercontent.com'
+            });
+
+            // Attach the click handler to the sign-in button
+            auth2.attachClickHandler('signin-button', {}, onSuccess, onFailure);
+        });
+    };
+
+    /**
+     * Handle successful sign-ins.
+     */
+    var onSuccess = function(user) {
+        console.log('Signed in as ' + user.getBasicProfile().getName());
+     };
+
+    /**
+     * Handle sign-in failures.
+     */
+    var onFailure = function(error) {
+        console.log(error);
+    }; 
+    </script>
 
   <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 </body>

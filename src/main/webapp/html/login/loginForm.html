@@ -15,12 +15,15 @@
 				<a href="#">Reset password</a> or <a href="javascript:goRegiAgreeForm();">create account</a> 
 			</form>
 				<button type="button" id="join" class="btn btn-primary btn-block">Login Now</button>
+				<div id="my-signin2" style="margin-top: 10px;margin-left: 60px;">zzz</div>
+				
 		</section>
 </section>
-
 <script src="../js/validUtil.js"></script>
 
 <script>
+
+
 $("#join").click(function () {
 	
 	var f = document.querySelector("form[role=login]");
@@ -32,18 +35,15 @@ $("#join").click(function () {
 		url:"/b90m2t2/login/join.do",
 		dataType:"json",
 		type:"POST",
-		data:{memberId: $("input[name=memberId]").val(),  
-		password: $("input[name=password]").val()}
+		data:{
+		memberId: $("input[name=memberId]").val(),  
+		password: $("input[name=password]").val()
+		}
 	}).done(function(result) {
 		
 		if(result.loginCheck){
-			
-			$("ul#login > span#loginOut").addClass("hidden");
-			$("ul#login > span#loginIn").removeClass("hidden");
-			$("ul#login > span#loginIn").addClass("show");
-			$("#content").load("main.html");
-			member=result.member;
-			
+		  	localStorage.setItem("member",result.member);
+			changeMenu();
 		}else{
 			
 			alert("무언가 틀렸습니다.");
@@ -51,4 +51,43 @@ $("#join").click(function () {
 		}
 	});
 });
+
+
+$("head").append('<meta name="google-signin-client_id" content="962372991834-i0bfgo3fah7fhhuo24n757h55crapn4h.apps.googleusercontent.com">');
+$("html").append('<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script'+">");
+
+  function onSuccess(googleUser) {
+    console.log('Logged in as: ' + googleUser.getBasicProfile().getEmail());
+  }
+
+  function onFailure(error) {
+    console.log(error);
+  }
+  function renderButton() {
+    gapi.signin2.render('my-signin2', {
+      'scope': 'profile email',
+      'width': 240,
+      'height': 50,
+      'longtitle': true,
+      'theme': 'dark',
+      'onsuccess': function (googleUser) {
+//     	  localStorage.setItem("member",member);
+    	  member=googleUser.getBasicProfile().getEmail();
+		  changeMenu();
+      }
+    });
+ }
+  
+  
+ function changeMenu(){
+		$("ul#login > span#loginOut").addClass("hidden");
+		$("ul#login > span#loginIn").removeClass("hidden");
+		$("ul#login > span#loginIn").addClass("show");
+		$("#content").load("main.html");
+ }
+ 
+ 
+
 </script>
+
+<!-- <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> -->
