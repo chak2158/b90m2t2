@@ -1,96 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset=utf-8>
-<meta name="viewport" content="width=620">
-<title>HTML5 Demo: File API (simple)</title>
+  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+</head>
 <body>
+  <div id="my-signin2"></div>
+  <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
 
-<section id="wrapper">
-
-    <header>
-      <h1>File API (simple)</h1>
-    </header>
-
-<article>
-
-  <p id="status">File API & FileReader API not supported</p>
- 
-  <p><input type=file></p>
- 
-  <p>Select an image from your machine to read the contents of the file without using a server</p>
- 
-  <div id="holder"></div>
-  
-</article>
-
-<script>
-
-var upload = document.getElementsByTagName('input')[0],
-    holder = document.getElementById('holder'),
-    state = document.getElementById('status');
-
-if (typeof window.FileReader === 'undefined') {
-	
- 	 state.className = 'fail';
- 	 
-} else {
-	
-	 state.className = 'success';
-	 state.innerHTML = 'File API & FileReader available';
-	 
-}
- 
- 
-upload.onchange = function (e) {
-	
-  e.preventDefault();
-
-  var file = upload.files[0];
-  var reader = new FileReader();
-
-  reader.onload = function (event) {
-	  
-    var img = new Image();
-    img.src = event.target.result;
-    // note: no onload required since we've got the dataurl...I think! :)
-    
-      img.width = 560;
-    
-    
-    holder.innerHTML = '';
-    holder.appendChild(img);
-    
-  };
-  
-  reader.readAsDataURL(file);
-
-  return false;
-  
-};
-</script>
-
-</section>
-
-<script>
-
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-
-<script>
-
-try {
-	
-var pageTracker = _gat._getTracker("UA-1656750-18");
-pageTracker._trackPageview();
-
-} catch(err) {}
-
-
-</script>
-
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 </body>
 </html>
-
-
