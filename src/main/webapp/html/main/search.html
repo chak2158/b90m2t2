@@ -1,0 +1,46 @@
+
+<input type='text' id='searchReq' />
+<button id="searchReqBtn">검색</button>
+<div id=searchResult></div>
+<script>
+
+
+	$("#searchReqBtn").click(function() {
+
+
+		$.ajax({
+			url : "/b90m2t2/main/searchCamp.do",
+			type : "GET",
+			data : {searchWord : $("#searchReq").val()}
+		}).done(function(result) {
+			var objs = JSON.parse(result);
+			var resultLength = objs.results.length;
+			var addr = "";
+			var listImg = "";
+			var imgSrcResult = "";
+			var imgSrc = "";
+			for (var i = 0; i < resultLength; i++) {
+//			console.log(objs.results[i].photos[0].photo_reference);
+//			imgSrc = objs.results[i].photos[0].photo_reference;
+			addr+=
+				objs.results[i].name+"<br>"+
+				"주소 : "+objs.results[i].formatted_address+"<br>"+
+				"평점 : "+objs.results[i].rating+"<br>"
+				;		
+				//"사진: <img src=https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+imgSrc+"/><br><br>"
+/*				
+			$.ajax({
+				url:"/b90m2t2/main/searchImg.do",
+				type : "GET",
+				data : {imgSrc : objs.results[i].photos[0].photo_reference}
+			}).done(function(result){
+				imgSrcResult = JSON.parse(result);
+				console.log(imgSrcResult);
+				console.dir(imgSrcResult);
+				}); 
+*/
+			}
+				$("#searchResult").html(addr);
+		});
+	});
+</script>
