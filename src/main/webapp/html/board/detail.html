@@ -1,15 +1,51 @@
-<!-- <div> -->
-<!-- 	<table border="1" class="test"> -->
-	
-	
-<!-- 	</table> -->
+<script id="myDetail" type="x">
+{{#detail}}
+	<div class="container">
+	<div class="content">
+		<ol class="breadcrumb">
+		  <li>Home</li>
+		  <li class="active">자유게시판</li>
+		</ol>
+		<table class="table table-no-border">
+		<tr>
+			<td class="td-txt-right td-wp10">번호</td>
+		 	<td>{{reviewNo}}</td>
+		</tr>
 
-<!-- </div> -->
+		<tr>
+			<td class="td-txt-right td-wp10">제목</td>
+		 	<td>{{title}}</td>
+		</tr>
+
+		<tr>
+			<td class="td-txt-right td-wp10">글쓴이</td>
+		 	<td>{{content}}</td>
+		</tr>
+
+		<tr>
+			<td class="td-txt-right td-wp10">내용</td>
+		 	<td>{{title}}</td>
+		</tr>
+		
+		<tr>
+			<td class="td-txt-right td-wp10">첨부파일</td>
+		 	<td><a href="{{pageContext.request.contextPath}}/upload${file.filePath}/${file.systemName}">${file.oriName}</a>(${file.fileSize} byte)</td>
+		</tr>
+		<tr>
+			<td class="td-txt-right td-wp10">등록일</td>
+		 	<td><fmt:formatDate value="{{regDate}}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+		</tr>
+		<button class="btn btn-primary btn-lg" type="button" onclick="pageDelete({{reviewNo}});">삭제</button>
 
 
-디테일
+	</div>
+{{/detail}}
+</script>
 
-<input type="text" id="title">
-<input type="text" id="content">
+<div id="container">
+</div>
+<!-- <a href="javascript:reviewBoard();">삭제</a>	 -->
 
+<script src="../js/detail.js">
+</script>
 

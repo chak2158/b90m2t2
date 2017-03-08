@@ -87,9 +87,8 @@ create table tb_review_recom (
 create table tb_review_comment ( 
 	no number(6) primary key,
 	review_no number(6),
-	member_id varchar2(20),
-	recom_status char(1),
-	check(recom_status in ('1','0')),
+	member_id varchar2(20) not null,
+	comment varchar2(1000) not null,
 	reg_date date default sysdate,
 	foreign key(review_no) references tb_review_board(review_no) on delete set null
 )

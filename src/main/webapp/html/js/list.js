@@ -100,32 +100,17 @@ function reviewBoard() {
 	pageList();
 }
 
-function makeDetail(result){
-	console.log(result);
-	var html = "";
-	var board = result.detail;
-	html +="<table border='1'>"
-	html += "<tr>"
-	html += "	<td>" + board.reviewNo +"</td>";
-	html += "</tr>" 
-		
-	html += "<tr>"
-	html += "	<td>" + board.memberId +"</td>"; 
-	html += "</tr>" 
-		
-	html += "<tr>"
-	html += "	<td>" + board.title +"</td>"; 
-	html += "</tr>" 
-		
-	html += "<tr>"
-	html += "	<td>" + board.content +"</td>"; 
-	html += "</tr>";
-	html += "</table>";
-	
-	$("#content").html(html);
-	
-}
-
+//function makeDetail(result){
+//	console.log(result);
+//	
+//	var html = "";
+//	var board = result.detail;
+//	
+//	
+//	
+////	$("#content").html(html);
+//	
+//}
 
 function detail(no) {
 	pageDetail(no);
@@ -138,21 +123,66 @@ function pageDetail(no){
 		dataType: "json",
 		data : {reviewNo : no}
 	})
-	.done(makeDetail)
+	.done(function(result) {
+		
+		board=result;
+		$("#content").load("detail.html");
+		
+	})
+}
+function pageWrite(){
+	var fd = new FormData();
+	
+	
+	fd.append("title",$("[name=title]").val());
+	fd.append("content",$("[name=content]").val());
+	fd.append("memberId",$("[name=memberId]").val());
+	
+	var files = $("[name=attachFile]")[0].files;
+	
+	for(var i=0;i<files.length;i++) {
+		fd.append("attachFile"+i,files[0]);
+	}
+	
+	
+	$.ajax({
+		url: "/b90m2t2/board/write.do",
+		type: "POST",
+		data : fd,
+		processData : false,
+		contentType : false
+	})
+	.done(function(){
+		alert("등록 되었습니다")
+		$("#content").load("list.html");
+		pageList();
+	})
+}
+
+function write(){
+	
+	$("#content").load("write.html");
+	
+}
+
+
+function pageDelete(no){
+
+	$.ajax({
+		url: "/b90m2t2/board/delete.do",
+		dataType: "json",
+		data : {reviewNo : no}
+	})
+	.done(function(){
+		alert("삭제 되었습니다")
+		$("#content").load("delete.html");
+		pageList();
+	})
 }
 
 
 
-	/*.done(function(no) {
-		
-		$("div#content").load("detaile.html");
-		
-	});
-	*/
-//	
-//	function reviewBoard() {
-//		$("div#content").load("detail.html");
-//	}
-//}
+
+
 
 

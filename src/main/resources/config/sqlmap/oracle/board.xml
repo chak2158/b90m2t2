@@ -39,9 +39,81 @@
     		where review_no= #{reviewNo}
     </select>
     
-    <select id="selectBoardFileByNo" parameterType="int" resultMap="boardMap"> 
+    <select id="selectBoardFileByNo" parameterType="int" resultMap="boardFileMap"> 
     	select *
     	  from tb_review_image
     	  	where review_no = #{reviewNo}
     </select>
+    
+<!--  등록  부분  -->
+        <insert id="insertBoard" parameterType="kr.co.camp.repository.vo.BoardVO">
+	   
+	    <selectKey keyProperty="reviewNo" order="BEFORE" resultType="int">
+	        select s_review_board_no.nextval from dual
+	    </selectKey>   
+	         
+	     <!-- 여기 쿼리이다. -->    
+			insert into tb_review_board(
+		   	review_no, 
+		    title, 
+		    member_id, 
+		    content,
+		    recom_cnt,
+		    unrecom_cnt,
+		    map_latitude,
+		    map_longitude
+		) values (
+		    #{reviewNo},
+		    #{title},
+		    #{memberId},
+		    #{content},
+		    #{recomCnt},
+		    #{unrecomCnt},
+		    '21231',
+		    '12323'
+		)    
+    </insert>
+    
+    <resultMap id="boardFileMap" type="reviewImageVO" >
+		<result property="reviewNo" column="review_no"/>
+		<result property="no" column="no"/>
+		<result property="oriName" column="ori_name"/>
+		<result property="systemName" column="system_name"/>
+		<result property="fileSize" column="file_size"/>
+		<result property="filePath" column="file_path"/>
+	</resultMap>
+	
+    <!-- 등록 파일 관련 부분 -->    
+    <insert id="insertBoardFile" parameterType="reviewImageVO">
+    	insert into tb_review_Image (
+    	no,
+    	review_no,
+    	ori_name,
+    	system_name,
+    	file_path,
+    	file_size
+      ) values (
+    	s_review_image_no.nextVal,
+    	#{reviewNo},
+    	#{oriName},
+    	#{systemName},
+    	#{filePath},
+    	#{fileSize}
+      )
+      
+    </insert>
+       <update id="updateBoard" parameterType="boardVO">
+    	update tb_review_board
+    	   set title = #{title},
+    	       member_id = #{memberId}
+    	 where review_no = #{reviewNo}
+    </update>
+    
+    <delete id="deleteBoard" parameterType="int">
+    	delete 
+    	  from tb_review_board
+    	 where review_no = #{no}
+    </delete>
+
+    
 </mapper>

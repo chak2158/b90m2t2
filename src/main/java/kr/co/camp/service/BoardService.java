@@ -10,7 +10,7 @@ import kr.co.camp.repository.vo.SearchVO;
 public interface BoardService {
 	public void write(Map<String, Object> param) throws Exception;
 	
-	public BoardVO updateForm(int no) throws Exception;
+	public BoardVO update(int no) throws Exception;
 	
 	public void update(BoardVO board) throws Exception;	
 

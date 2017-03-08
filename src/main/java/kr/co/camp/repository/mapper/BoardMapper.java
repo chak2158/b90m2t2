@@ -24,7 +24,10 @@ public interface BoardMapper {
 	/* =================================================== */
 	public void insertBoardFile(ReviewImageVO boardFile) throws Exception;
 	public ReviewImageVO selectBoardFileByNo(int no) throws Exception;
-	
+	/* 다중 파일 관련                                             */
+	/* =================================================== */
+	public List<ReviewImageVO> selectBoard(ReviewImageVO boardFiles) throws Exception;
+	/* =================================================== */
 	
 	/* =================================================== */
 	/* 댓글 관련                                             */

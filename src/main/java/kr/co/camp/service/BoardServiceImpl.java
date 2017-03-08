@@ -22,16 +22,36 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public void write(Map<String, Object> param) throws Exception {
-		int no = dao.insertBoard((BoardVO)param.get("board"));
-		ReviewImageVO boardFile = (ReviewImageVO)param.get("boardFile");
-		if (boardFile != null) {
-			boardFile.setNo(no);
-			dao.insertBoardFile(boardFile);
+		dao.insertBoard((BoardVO)param.get("board"));
+		int no = ((BoardVO)param.get("board")).getReviewNo();
+		
+		
+		System.out.println("글 번호 : " + no);
+		
+		
+		List<ReviewImageVO> boardFile = (List<ReviewImageVO>)param.get("fileList");
+		
+		System.out.println("파일 개수 : " + boardFile.size());
+		
+		if (boardFile.size()!=0) {
+			
+			
+			for(int i=0;i<boardFile.size();i++) {
+				ReviewImageVO vo = boardFile.remove(i);
+				vo.setNo(no);
+				dao.insertBoardFile(vo);
+			}
+//			boardFile.setReviewNo(no);
+//			dao.insertBoardFile(boardFile);
+//			System.out.println(boardFile.getFilePath());
+//			System.out.println(boardFile.getOriName());
+//			System.out.println(boardFile.getSystemName());
+			
 		}
 	}
 
 	@Override
-	public BoardVO updateForm(int no) throws Exception {
+	public BoardVO update(int no) throws Exception {
 		return dao.selectOneBoard(no);
 	}
 
