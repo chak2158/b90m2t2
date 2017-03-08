@@ -10,9 +10,9 @@ import kr.co.camp.repository.vo.SearchVO;
 public interface BoardService {
 	public void write(Map<String, Object> param) throws Exception;
 	
-	public BoardVO update(int no) throws Exception;
-	
 	public void update(BoardVO board) throws Exception;	
+	
+	public BoardVO updateForm(int no) throws Exception;
 
 	public Map<String, Object> list(SearchVO search) throws Exception;
 	
@@ -20,11 +20,11 @@ public interface BoardService {
 	
 	public void delete(int no) throws Exception;
 	
-	public List<CommentVO> commentUpdate(CommentVO comment) throws Exception ;
+	public List<CommentVO> commentList(int no) throws Exception ;
 	
 	public List<CommentVO> commentRegist(CommentVO comment) throws Exception;
 	
-	public List<CommentVO> commentList(int no) throws Exception ;
+	public List<CommentVO> commentUpdate(CommentVO comment) throws Exception ;
 	
 	public List<CommentVO> commentDelete(CommentVO comment) throws Exception ;
 

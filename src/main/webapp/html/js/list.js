@@ -176,12 +176,53 @@ function pageDelete(no){
 	.done(function(){
 		alert("삭제 되었습니다")
 		$("#content").load("delete.html");
-		pageList();
+		reviewBoard();
+	})
+}
+function pageUpdate(no){
+//	console.log(result);
+	$.ajax({
+		url: "/b90m2t2/board/updateForm.do",
+		dataType: "json",
+		data : {reviewNo : no}
+	})
+	.done(function(result){
+//		console.log(result);
+		board=result.board;
+		console.log(board.reviewNo)
+		$("#content").load("updateForm.html");
+	});
+}
+
+
+
+function pageUpdateClick(){
+	var reviewNo = $("[name=reviewNo]").val();
+	var title = $("[name=title]").val();
+	var memberId = $("[name=memberId]").val();
+	var content = $("[name=content]").val();
+	
+	console.log(memberId);
+	console.log(reviewNo);
+	$.ajax({
+		url : "/b90m2t2/board/update.do",
+		data : {
+			"reviewNo": reviewNo,
+			"title" : title,
+			"memberId" : memberId,
+			"content" : content
+		}
+	})
+	.done(function(){
+		alert("수정 됬습니다.");
+		reviewBoard();
 	})
 }
 
 
 
+
+//===============================================================
 
 
 

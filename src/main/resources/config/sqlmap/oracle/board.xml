@@ -105,7 +105,7 @@
        <update id="updateBoard" parameterType="boardVO">
     	update tb_review_board
     	   set title = #{title},
-    	       member_id = #{memberId}
+    	       content = #{content}
     	 where review_no = #{reviewNo}
     </update>
     
@@ -115,5 +115,24 @@
     	 where review_no = #{no}
     </delete>
 
-    
+     <resultMap id="boardCommentMap" type="commentVO" >
+		<result property="reviewNo" column="review_no"/>
+		<result property="no" column="no"/>
+		<result property="memberId" column="member_id"/>
+		<result property="comment" column="comment"/>
+		<result property="regDate" column="reg_date"/>
+	</resultMap>
+	
+	
+	<select id="selectBoardCommentByNo" parameterType="int" resultMap="boardCommentMap">
+	  select *
+    	  from ( 
+    	  		 select rownum rnum, a.*
+    	           from (select *  
+    	                   from tb_review_comment
+    	                  order by review_no desc 
+    	                ) a 
+    	       )  
+    	 where rnum between #{begin} and #{end}
+	</select>
 </mapper>

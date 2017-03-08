@@ -51,14 +51,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO update(int no) throws Exception {
-		return dao.selectOneBoard(no);
-	}
-
-	@Override
 	public void update(BoardVO board) throws Exception {
 		dao.updateBoard(board);
 	}
+	
+	@Override
+	public BoardVO updateForm(int no) throws Exception {
+		return dao.selectOneBoard(no);
+	}
+
 
 	@Override
 	public Map<String, Object> list(SearchVO search) throws Exception {
@@ -80,13 +81,12 @@ public class BoardServiceImpl implements BoardService {
 	public void delete(int no) throws Exception {
 		dao.deleteBoard(no);
 	}
-
+	
 	@Override
-	public List<CommentVO> commentUpdate(CommentVO comment) throws Exception {
-		dao.updateBoardComment(comment);
-		return dao.selectBoardCommentByNo(comment.getNo());
+	public List<CommentVO> commentList(int no) throws Exception {
+		return dao.selectBoardCommentByNo(no);
 	}
-
+	
 	@Override
 	public List<CommentVO> commentRegist(CommentVO comment) throws Exception {
 		dao.insertBoardComment(comment);
@@ -94,8 +94,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<CommentVO> commentList(int no) throws Exception {
-		return dao.selectBoardCommentByNo(no);
+	public List<CommentVO> commentUpdate(CommentVO comment) throws Exception {
+		dao.updateBoardComment(comment);
+		return dao.selectBoardCommentByNo(comment.getNo());
 	}
 
 	@Override

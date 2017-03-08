@@ -138,9 +138,24 @@ public class BoardController {
 		return "";	
 	}
 	
+	@RequestMapping("/update.do")
+	public void update(int reviewNo, String title, String memberId, String content) throws Exception {
+		System.out.println(reviewNo);
+		BoardVO board = new BoardVO();
+		board.setReviewNo(reviewNo);
+		board.setTitle(title);
+		board.setMemberId(memberId);
+		board.setContent(content);
+		service.update(board);
+	}
+	
 	@RequestMapping("/updateForm.do")
-	public void updateForm(int no, Model model) throws Exception {
-		model.addAttribute("board", service.update(no));
+	public Map<String, Object> updateForm(int reviewNo, Model model) throws Exception {
+//		System.out.println(reviewNo);
+		Map<String, Object> result = new HashMap<>();	//<String, Object>
+		result.put("board", service.updateForm(reviewNo));
+//		System.out.println(result);
+		return result;
 	}
 	
 	@RequestMapping("/delete.do")
@@ -148,4 +163,23 @@ public class BoardController {
 		service.delete(reviewNo);
 		return "";
 	}
+	
+	/*@RequestMapping("/commentList.do")
+	@ResponseBody
+	public List<CommentVO> commentList(int no, SearchVO search) throws Exception {
+		return service.commentList(no);
+	}*/
+	
+	/*@RequestMapping("/commentRegist.do")
+	@ResponseBody
+	public List<CommentVO> commentRegist(CommentVO comment) throws Exception {
+		service.commentRegist(comment);
+		return service.commentList(comment.getNo());
+	}*/
+	
+	
+	
+	
+	
+	
 }
