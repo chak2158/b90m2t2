@@ -14,16 +14,17 @@
 				</div>
 				<a href="#">Reset password</a> or <a href="javascript:goRegiAgreeForm();">create account</a> 
 			</form>
-				<button type="button" id="join" class="btn btn-primary btn-block">Login Now</button>
-				<div id="my-signin2" style="margin-top: 10px;margin-left: 60px;">zzz</div>
-				
+				<button type="button" id="join" class="btn btn-primary btn-block">로그인</button>
+				<button type="button" id="searchIdBtn" class="btn btn-primary btn-block">아이디 찾기</button>
+				<button type="button" id="searchPwBtn" class="btn btn-primary btn-block">비밀번호 찾기</button>
+				<div id="my-signin2" style="margin-top: 10px;margin-left: 60px;"></div>
 		</section>
 </section>
 <script src="../js/validUtil.js"></script>
 
 <script>
 
-
+// 로그인 버튼 클릭시.
 $("#join").click(function () {
 	
 	var f = document.querySelector("form[role=login]");
@@ -45,13 +46,64 @@ $("#join").click(function () {
 		  	localStorage.setItem("member",result.member);
 			changeMenu();
 		}else{
-			
-			alert("무언가 틀렸습니다.");
-			
+			alert("아이디와 비밀번호를 확인하세요");
 		}
 	});
 });
 
+
+$("#searchIdBtn").click(function() {
+	$("#searchIdBtn").after(
+			$("<div></div>").css({
+					position:"absolute",
+					background:"skyblue",
+					left:"300px",
+					top:"200px",
+					width:"350px",
+					height:"100px"
+					}).append("이메일을 입력하세요<br>").append($("<input type='text' id='emailForId' /> <button id='sendEmail'>전송</button> <button id='close'> 닫기 </button> "))	
+			)
+			
+	$("#sendEmail").click(function () {
+	
+		var email = $("#emailForId");
+		
+		if (email.val() == ""){
+			alert("이메일을 입력하세요.")
+			email.focus();
+			return;
+		}
+		
+		var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+		
+		if(regex.test(email.val()) === false) {
+		 alert("잘못된 이메일 형식입니다.");
+		 email.focus();
+		 return false;
+		} 
+		
+		$.ajax({
+			url:"/b90m2t2/login/searchId.do",
+			type:"POST",
+			data:{email:email.val()}
+		})
+		
+		$("#searchIdBtn + div").remove();
+		
+	});
+	
+	$("#close").click(function () {
+	
+		$("#searchIdBtn + div").remove();
+		
+	});
+	
+});
+
+
+
+
+// 구글 로그인 
 
 $("head").append('<meta name="google-signin-client_id" content="962372991834-i0bfgo3fah7fhhuo24n757h55crapn4h.apps.googleusercontent.com">');
 $("html").append('<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script'+">");
@@ -71,7 +123,7 @@ $("html").append('<script src="https://apis.google.com/js/platform.js?onload=ren
       'longtitle': true,
       'theme': 'dark',
       'onsuccess': function (googleUser) {
-//     	  localStorage.setItem("member",member);
+    	  localStorage.setItem("member",member);
     	  member=googleUser.getBasicProfile().getEmail();
 		  changeMenu();
       }
@@ -79,6 +131,7 @@ $("html").append('<script src="https://apis.google.com/js/platform.js?onload=ren
  }
   
   
+  // 로그인 성공시 -> 로그아웃 메뉴 
  function changeMenu(){
 		$("ul#login > span#loginOut").addClass("hidden");
 		$("ul#login > span#loginIn").removeClass("hidden");

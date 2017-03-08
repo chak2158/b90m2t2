@@ -27,6 +27,20 @@
 		where member_id = #{memberId}
 	</select>
 	
+	<select id="retrieveMemberEmail" parameterType="string" resultMap="memberMap">
+		select *
+		  from tb_camp_member
+		where email = #{email}
+	</select>
+	
+	<select id="searchId" parameterType="string" resultType="string">
+		select member_id
+		  from tb_camp_member
+		where email = #{email}
+	</select>
+	
+	
+	
 	<insert id="insertMember" parameterType="campMemberVO">
 		insert into tb_camp_member ( 
 			member_id,

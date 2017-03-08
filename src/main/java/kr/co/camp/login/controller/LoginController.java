@@ -28,6 +28,9 @@ public class LoginController {
 
 	@Autowired
 	private LoginService service;
+	@Autowired
+	private NaverTest nt;
+	
 	
 	@RequestMapping("/join.do")
 	public Map<String, Object> join(CampMemberVO user,HttpServletRequest request) throws Exception {
@@ -54,9 +57,25 @@ public class LoginController {
 	
 	@RequestMapping("/checkId.do")
 	public boolean checkId(String id) throws Exception{
-		System.out.println("여기 왔다.");
+		System.out.println("id : " + id);
 		System.out.println(service.checkId(id));
 		return service.checkId(id);
+	}
+	
+	@RequestMapping("/checkEmail.do")
+	public boolean checkEmail(String email) throws Exception{
+		System.out.println("여기 왔다.");
+		System.out.println("email : " + email);
+		System.out.println(service.checkEmail(email));
+		return service.checkEmail(email);
+	}
+	
+	@RequestMapping("/searchId.do")
+	public void searchId(String email) throws Exception{
+		System.out.println("이메일 : " + email);
+		System.out.println("아이디 찾기 " + service.searchId(email));
+		nt.sendEmail(email);
+		
 	}
 	
 	

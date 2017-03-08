@@ -66,7 +66,6 @@ for(var i=1; i<=31;i++){
 
 // 아이디 중복 검사.
 $("input[id='id']").keyup(function() {
-	
 	$.ajax({
 		url:"/b90m2t2/login/checkId.do",
 		type:"POST",
@@ -76,19 +75,41 @@ $("input[id='id']").keyup(function() {
 		console.log(result);
 		
 		if(result=='false'){
-			$("#msg").html("사용가능한 아이디 입니다.").css("color","blue");
+			$("#msgId").html("사용가능한 아이디 입니다.").css("color","blue");
 		}else if(result=='true'){
-			$("#msg").html("이미 사용중 입니다.").css("color","red");
+			$("#msgId").html("이미 사용중 입니다.").css("color","red");
 		}
 		
 		if( $("input[id=id]").val()==""){
 			$("#msg").html("");
 		}
-		
 	});
-	
 });
 
+// 이메일 중복 검사
+$("input[id=email]").keyup(function() {
+	
+	console.log($("input[id=email]").val(),"email");
+	
+	$.ajax({
+		url:"/b90m2t2/login/checkEmail.do",
+		type:"POST",
+		data:{email: $("input[id=email]").val()}
+	}).done(function(result){
+		
+		console.log(result);
+		
+		if(result=='false'){
+			$("#msgEmail").html("사용가능한 이메일 입니다.").css("color","blue");
+		}else if(result=='true'){
+			$("#msgEmail").html("이미 사용중 입니다.").css("color","red");
+		}
+		
+		if( $("input[id=email]").val()==""){
+			$("#msgEmail").html("");
+		}
+	});
+});
 
 $("#joinBtn").click(function() {
 	
@@ -133,11 +154,12 @@ $("#joinBtn").click(function() {
 	}
 	
 	// email 유효성 체크.
-	var email = document.querySelector('input[type=email]').value;
+	var email = document.querySelector('input[id=email]').value;
 	var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 	
 	if(regex.test(email) === false) {
 	 alert("잘못된 이메일 형식입니다.");
+	 email.focus();
 	 return false;
 	} 
 	
@@ -149,6 +171,7 @@ $("#joinBtn").click(function() {
 	
 	if(regex.test(phone) === false) {
 		alert("잘못된 휴대폰번호 형식입니다.");
+		phone.focus();
 		return false;
 	}
 	

@@ -34,5 +34,15 @@ public class LoginServiceImpl implements LoginService{
 		return dao.retrieveMemberId(id) != null ? true : false;
 	}
 	
+	public boolean checkEmail(String email) throws Exception {
+		return dao.retrieveMemberEmail(email) != null ? true : false;
+	}
+	
+	public String searchId(String email) throws Exception{
+		return dao.searchId(email);
+	}
+		
+		
+		
 	
 }
