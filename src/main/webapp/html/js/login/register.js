@@ -111,20 +111,29 @@ $("input[id=email]").keyup(function() {
 	});
 });
 
-$("#joinBtn").click(function() {
+//$("#joinBtn").click(function() {
+//
+//	console.log("ㅋㅋㅋ");
+//	
+//	$.ajax({
+//		url:"http://localhost:10001/login/pass.do",
+//		data:{pass:"zzz"},
+//		type:"GET",
+//		async: false	
+//	}).done(function (result) {
+//		console.log("*",result);
+//		pass = result;
+//		console.log("!",pass);
+//	});
+//	
+//	setTimeout();
+//	
+//	
+//	console.log("pass",pass);
+//	console.log("먼저 실행봐라");
+//	
+//});
 
-	$.ajax({
-		url:"http://localhost:10001/login/pass.do",
-		data:{pass:"zzz"},
-		type:"GET"
-	}).done(function (result) {
-		console.log(result);
-	});
-	
-});
-
-
-/*
 $("#joinBtn").click(function() {
 	
 	//아이디
@@ -207,11 +216,21 @@ $("#joinBtn").click(function() {
 		return;
 	}	
 	
+	var pass;
+	
+	$.ajax({
+		url:"http://localhost:10001/login/pass.do",
+		data:{pass:$("#password").val()},
+		async: false,
+		type:"GET"
+	}).done(function (result) {
+		pass = result;
+	});
 	
 	var fd= new FormData();
 	
 	fd.append("memberId",$("#id").val());
-	fd.append("password",$("#password").val());
+	fd.append("password",pass);
 	fd.append("homeAddr",$("#homeAddr").val());
 	fd.append("email",$("#email").val());
 	fd.append("phoneNumber", $("#phoneNumber").val());
@@ -228,6 +247,7 @@ $("#joinBtn").click(function() {
 		contentType:false,
 		success : function (result) {
 			if(result){
+				console.log("이거먼저 1");
 				$("#content").load("loginForm.html");
 				alert("회원가입 성공");	
 			}
@@ -235,7 +255,4 @@ $("#joinBtn").click(function() {
 	});
 	
 	
-	
 });
-*/
-

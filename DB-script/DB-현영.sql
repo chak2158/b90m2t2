@@ -56,3 +56,6 @@ insert into tb_social_member (
 ) values ( 
 	'email'
 )
+
+alter table tb_camp_member
+modify (password varchar2(40));

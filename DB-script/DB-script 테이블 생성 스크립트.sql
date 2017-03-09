@@ -22,7 +22,7 @@ create sequence s_review_comment_no;
 
 create table tb_camp_member(
 	member_id varchar2(20) primary key,
-	password varchar2(20) not null,
+	password varchar2(40) not null,
 	home_addr varchar2(100) not null,
 	birth_year char(4) not null,
 	birth_month char(2) not null,

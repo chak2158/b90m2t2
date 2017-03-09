@@ -88,9 +88,11 @@ public class LoginController {
 		
 		Map<String, Object> param = new HashMap<>();
 		
+		System.out.println("password : " + request.getParameter("password"));
+		
 		CampMemberVO member = new CampMemberVO();
 		member.setMemberId(request.getParameter("memberId"));
-		member.setPassword(request.getParameter("password"));
+		member.setPassword("cRDtpNCeBiql5KOQsKVyrA0sAiA=");
 		member.setEmail(request.getParameter("email"));
 		member.setHomeAddr(request.getParameter("homeAddr"));
 		member.setPhoneNumber(request.getParameter("phoneNumber"));

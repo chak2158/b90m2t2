@@ -16,7 +16,7 @@
 			</form>
 				<button type="button" id="join" class="btn btn-primary btn-block">로그인</button>
 				<button type="button" id="searchIdBtn" class="btn btn-primary btn-block">아이디 찾기</button>
-				<button type="button" id="searchPwBtn" class="btn btn-primary btn-block">비밀번호 찾기</button>
+				<button type="button" id="searchPassBtn" class="btn btn-primary btn-block">비밀번호 찾기</button>
 				<div id="my-signin2" style="margin-top: 10px;margin-left: 60px;"></div>
 		</section>
 </section>
@@ -52,7 +52,69 @@ $("#join").click(function () {
 });
 
 
+$("#searchPassBtn").click(function() {
+	
+	$("#searchPassBtn").after(
+			$("<div></div>").css({
+					position:"absolute",
+					background:"skyblue",
+					left:"300px",
+					top:"200px",
+					width:"320px",
+					height:"120px"
+// 					border-radius:"30px"
+					}).append("아이디를 입력하세요<br>")
+					.append($("<input type='text' id='passwordForId' /><br>"))
+					.append("이메일을 입력하세요<br>")
+					.append($("<input type='text' id='emailForId' /> <br> <button id='sendEmail'>전송</button> <button id='close'> 닫기 </button> "))	
+			 );			
+	
+	var passwordForId = document.querySelector("[id=passwordForId]");
+	
+	$("#sendEmail").click(function () {
+		
+		if(isEmpty(passwordForId,"아이디를 입력하세요")) return;
+		
+		var email = $("#emailForId");
+		
+		if (email.val() == ""){
+			alert("이메일을 입력하세요.")
+			email.focus();
+			return;
+		}
+		
+		var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+		
+		if(regex.test(email.val()) === false) {
+		 alert("잘못된 이메일 형식입니다.");
+		 email.focus();
+		 return false;
+		} 
+		
+// 		$.ajax({
+// 			url:"/b90m2t2/login/searchPass.do",
+// 			type:"POST",
+// 			data:{email:email.val(),
+// 				  password:
+// 			}
+// 		);
+		
+		$("#searchIdBtn + div").remove();
+		
+	});
+	
+	$("#close").click(function () {
+	
+		$("#searchPassBtn + div").remove();
+		
+	});
+	
+	
+});
+
+
 $("#searchIdBtn").click(function() {
+	
 	$("#searchIdBtn").after(
 			$("<div></div>").css({
 					position:"absolute",
@@ -61,7 +123,8 @@ $("#searchIdBtn").click(function() {
 					top:"200px",
 					width:"350px",
 					height:"100px"
-					}).append("이메일을 입력하세요<br>").append($("<input type='text' id='emailForId' /> <button id='sendEmail'>전송</button> <button id='close'> 닫기 </button> "))	
+					}).append("이메일을 입력하세요<br>")
+					.append($("<input type='text' id='emailForId' /> <button id='sendEmail'>전송</button> <button id='close'> 닫기 </button> "))	
 			)
 			
 	$("#sendEmail").click(function () {
@@ -88,14 +151,13 @@ $("#searchIdBtn").click(function() {
 			data:{email:email.val()}
 		})
 		
+		alert("아이디가 전송되었습니다.");
 		$("#searchIdBtn + div").remove();
 		
 	});
 	
 	$("#close").click(function () {
-	
 		$("#searchIdBtn + div").remove();
-		
 	});
 	
 });
