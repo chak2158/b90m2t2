@@ -1,59 +1,51 @@
-<button href="#"id="zz" class="df">e222e2</button>
+<button href="#"id="zz" class="df">iㄷㅕㅑop80</button>
 <input type='text' id='searchReq' />
 <button id="searchReqBtn">검색</button>
 <div id=searchResult></div>
 <script>
+/*
 	$("#zz").click(function(){
 	console.log("시작함k");
 	});
 	$(".df").click(function(){
+		console.dir(this);
+		var zz = this.id;
 	console.log("시작함23");
+		console.log($(".df").id);
+		console.log($(".df").attr("id"));
 	});
-
-	$(".placeId").click(function(){
-		console.log("시작함");
- 		
-/* 		console.log($(".placeId").id);
-		console.log($(".placeId").id());
-		$.ajax({
-			url : "/b90m2t2/main/searchDetail.do",
-			type : "GET",
-			data : {placeId: $(".placeId").id}
-		})
-		.done(function(result){
-			console.log("됨");
-			var objs = JSON.parse(result);
-			console.dir(objs);
-			
-		}); */
-		
-	});
-
+ */
+	var objs = "";
+	var resultLength = "";
+	var searchHtml = "";
+	var listImg = "";
+	var imgSrcResult = "";
+	var imgSrc = "";
+	var avrScore = "";
+	var placeDetailSrc = "";
 
 
 	$("#searchReqBtn").click(function() {
-
+		//검색어에 대한 결과값 요청
 		$.ajax({
 			url : "/b90m2t2/main/searchCamp.do",
 			type : "GET",
 			data : {searchWord : $("#searchReq").val()}
 		})
 		.done(function(result) {
-			
-			var objs = JSON.parse(result);
-			var resultLength = objs.results.length;
-			var searchHtml = "";
-			var listImg = "";
-			var imgSrcResult = "";
-			var imgSrc = "사진 : 사진이 존재하지 않습니다. <br><br>";
-			var avrScore = "평점이 존재하지 않습니다.";
-			var placeDetailSrc = "";
+			//검색어 결과값 파싱
+			 objs = JSON.parse(result);
+			 resultLength = objs.results.length;
+			 searchHtml = "";
+			 listImg = "";
+			 imgSrcResult = "";
+			 imgSrc = "사진 : 사진이 존재하지 않습니다. <br><br>";
+			 avrScore = "평점이 존재하지 않습니다.";
+			 placeDetailSrc = "";
 		 	console.dir(objs); 
-			
-			if(objs.error_message != undefined){
-				addr+=objs.error_message;
-			}
-			
+			//에러메세지 검출
+			if(objs.error_message != undefined){searchHtml+=objs.error_message;}
+			//검색결과값 화면에 출력
 			for (var i = 0; i < resultLength; i++) {
 				if(objs.results[i].rating != undefined) avrScore = objs.results[i].rating;
 				if(objs.results[i].photos != undefined){
@@ -66,27 +58,54 @@
 					"주소 : "+objs.results[i].formatted_address+"<br>"+
 					"평점 : "+avrScore+"<br>"+
 					"사진:"+imgSrc;
-				
-				
+	
 			}	
 			 $("#searchResult").html(searchHtml);
-			
-			$(".placeId").click(function(){
-				console.log("시작함");
-				console.log($(".placeId").id());
-				$.ajax({
-					url : "/b90m2t2/main/searchDetail.do",
-					type : "GET",
-					data : {placeId: $(".placeId").id()}
-				})
-				.done(function(result){
-					console.log("됨");
-					var objs = JSON.parse(result);
-					console.dir(objs);
+			 //검색결과 제목 클릭시 세부 정보 결과값 요청
+				$(".placeId").click(function(){
+					console.log("시작함");
+					var pid = this.id;
+					$.ajax({
+						url : "/b90m2t2/main/searchDetail.do",
+						type : "GET",
+						data : {"placeId":pid}
+					})
+					.done(function(result){
+						//세부 정보 파싱
+						console.log("ㅋㅋㅋ");
+						 objs = JSON.parse(result);
+						 photosLength = objs.result.photos.length;
+						 console.log("photosLength:"+photosLength);
+						 searchHtml = "";
+						 listImg = "";
+						 imgSrcResult = "";
+						 imgSrc = "사진 : 사진이 존재하지 않습니다. <br><br>";
+						 avrScore = "평점이 존재하지 않습니다.";
+						 placeDetailSrc = "";
+						//에러메세지 검출
 					
-				}); 
-			});
-
-		});
-	});
+						if(objs.error_message != undefined){
+							searchHtml+=objs.error_message;
+						}
+						if(objs.result.rating != undefined) avrScore = objs.result.rating;
+						console.dir(objs);
+						searchHtml+=
+						objs.result.name+"<br>"+
+						"주소 : "+objs.result.formatted_address+"<br>"+
+						"평점 : "+avrScore+"<br>"+
+						"전화번호  : "+objs.result.formatted_phone_number+"<br>"+
+						"홈페이지 :<a href='"+objs.result.website+"'>바로가기</a><br>";
+/* 						for(int i=0 ; i < photosLength ; i++){							
+						if(objs.result.photos[i] != undefined){
+							imgSrc ="<img src=https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+objs.result.photos[i].photo_reference+"&key=AIzaSyBkd_UadYzaVrZo1iLoAVTLtV3iSkl_MwI><br><br>";
+						}	
+						searchHtml+=
+						"사진"+i+":"+imgSrc+"<br>";
+						} */
+						
+						$("#searchResult").html(searchHtml);
+					}); //세부 정보 파싱		
+				}); //검색결과 제목 클릭시 세부 정보 결과값 요청
+		});//검색어 결과값 파싱
+	});//검색어에 대한 결과값 요청
 </script>

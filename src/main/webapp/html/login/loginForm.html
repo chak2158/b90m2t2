@@ -42,9 +42,14 @@ $("#join").click(function () {
 		}
 	}).done(function(result) {
 		
+		
+		console.log("키키키");
+		
 		if(result.loginCheck){
 		  	localStorage.setItem("member",result.member);
+		  	$("#content").load(path+"/main/search.html");
 			changeMenu();
+			alert("로그인하셨습니다.");
 		}else{
 			alert("아이디와 비밀번호를 확인하세요");
 		}
@@ -195,10 +200,10 @@ $("html").append('<script src="https://apis.google.com/js/platform.js?onload=ren
   
   // 로그인 성공시 -> 로그아웃 메뉴 
  function changeMenu(){
-		$("ul#login > span#loginOut").addClass("hidden");
-		$("ul#login > span#loginIn").removeClass("hidden");
-		$("ul#login > span#loginIn").addClass("show");
-		$("#content").load("main.html");
+		$("#logOutNav").removeClass("hidden");
+		$("#LoginFormNav").addClass("hidden");
+		$("#MyPageNav").removeClass("hidden");
+		$("#RegisterNav").addClass("hidden");
  }
  
  
