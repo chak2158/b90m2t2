@@ -1,8 +1,6 @@
 function makePageList(result) {
 	$("#count").text(result.pageResult.count);
 	
-	console.log(result);
-	
 	var html = "";
 	
 	for (var i = 0; i < result.list.length; i++) {
@@ -139,7 +137,7 @@ function pageList(pageNo) {
 }
   
 function reviewBoard() {
-	$("div#content").load("/b90m2t2/board/list.html");
+	$("div#content").load("list.html");
 	pageList();
 	
 }

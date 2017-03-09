@@ -119,7 +119,7 @@
 		<result property="reviewNo" column="review_no"/>
 		<result property="no" column="no"/>
 		<result property="memberId" column="member_id"/>
-		<result property="comment" column="comment"/>
+		<result property="reviewComment" column="review_comment"/>
 		<result property="regDate" column="reg_date"/>
 	</resultMap>
 	

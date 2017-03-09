@@ -6,9 +6,17 @@ public class CommentVO {
 	
 	private int no;
 	private int reviewNo;
-	private String comment;
 	private String memberId;
+	private String reviewComment;
 	private Date regDate;
+	
+	
+	public String getReviewComment() {
+		return reviewComment;
+	}
+	public void setReviewComment(String reviewComment) {
+		this.reviewComment = reviewComment;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -20,12 +28,6 @@ public class CommentVO {
 	}
 	public void setReviewNo(int reviewNo) {
 		this.reviewNo = reviewNo;
-	}
-	public String getComment() {
-		return comment;
-	}
-	public void setComment(String comment) {
-		this.comment = comment;
 	}
 	public String getMemberId() {
 		return memberId;

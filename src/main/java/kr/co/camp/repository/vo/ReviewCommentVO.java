@@ -5,12 +5,20 @@ public class ReviewCommentVO {
 
 	 private int no; 
 	 private int reviewNo; 
+	 private String reviewComment;
 	 private String memberId; 
-	 private char recomStatus; 
 	 private Date regDate; 
 
 
-	 public void setNo(int no){
+	 public String getReviewComment() {
+		return reviewComment;
+	}
+
+	public void setReviewComment(String reviewComment) {
+		this.reviewComment = reviewComment;
+	}
+
+	public void setNo(int no){
 	      this.no=no;
 	 }
 
@@ -32,14 +40,6 @@ public class ReviewCommentVO {
 
 	 public String getMemberId(){
 	      return memberId;
-	 }
-
-	 public void setRecomStatus(char recomStatus){
-	      this.recomStatus=recomStatus;
-	 }
-
-	 public char getRecomStatus(){
-	      return recomStatus;
 	 }
 
 	 public void setRegDate(Date regDate){

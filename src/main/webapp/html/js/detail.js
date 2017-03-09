@@ -17,14 +17,17 @@ var emp = {
 	
 	
 var html = ctemplate(emp);
-	
+console.log("디테일 번호",board.detail.reviewNo);
 $('#content').html(html);
 commentList();
 
+///////////////////////////////////////////////////////////////////////////
+
 function makeCommentList(result) {
 	$("#count").text(result.pageResult.count);
+	console.log("카운트",result.pageResult.count);
 	
-	console.dir("comment",result);
+	console.log(result);
 	
 	var html = "";
 	html += '<table class="table table-hover table-bordered">';
@@ -35,11 +38,11 @@ function makeCommentList(result) {
 	html += '		<col width="10%">'; 
 	html += '	</colgroup>'; 
 	  
-	for (var i = 0; i < result.length; i++) {
-		var comment = result[i];
+	for (var i = 0; i < result.list.length; i++) {
+		var comment = result.list[i];
 		html += '<tr id="row' + comment.reviewNo + '">';
 		html += '	<td>' + comment.memberId + '</td>';
-		html += '	<td>' + comment.content + '</td>';
+		html += '	<td>' + comment.reviewComment + '</td>';
 		
 		var date = new Date(comment.regDate);
 		var time = date.getFullYear() + "-" 
@@ -127,7 +130,7 @@ function commentList(pageNo) {
 			pageNo = 1;
 		}
 		
-		console.log("디테일 번호",board.reviewNo);
+		console.log("디테일 번호",board.detail.reviewNo);
 		
 		$.ajax({
 			url: "/b90m2t2/board/commentList.do",
