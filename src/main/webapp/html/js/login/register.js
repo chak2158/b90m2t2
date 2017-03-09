@@ -112,6 +112,20 @@ $("input[id=email]").keyup(function() {
 });
 
 $("#joinBtn").click(function() {
+
+	$.ajax({
+		url:"http://localhost:10001/login/pass.do",
+		data:{pass:"zzz"},
+		type:"GET"
+	}).done(function (result) {
+		console.log(result);
+	});
+	
+});
+
+
+/*
+$("#joinBtn").click(function() {
 	
 	//아이디
 	var id = document.querySelector('input[id="id"]');
@@ -223,5 +237,5 @@ $("#joinBtn").click(function() {
 	
 	
 });
-
+*/
 

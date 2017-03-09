@@ -48,6 +48,14 @@
        <property name="maxUploadSize" value="10485760"/>
      </bean> 
      
-     
-     
+    <mvc:cors>
+
+		<mvc:mapping path="/api/**" allowed-origins="http://localhost:10001"
+					 allowed-methods="GET, PUT" allowed-headers="header1, header2, header3"
+					 exposed-headers="header1, header2" allow-credentials="false" max-age="123" />
+
+		<mvc:mapping path="/resources/**" allowed-origins="http://localhost:10001" />
+
+	</mvc:cors>
+
 </beans>
