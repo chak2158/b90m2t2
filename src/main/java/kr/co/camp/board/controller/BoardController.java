@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.camp.repository.vo.BoardVO;
+import kr.co.camp.repository.vo.PageResultVO;
 import kr.co.camp.repository.vo.ReviewImageVO;
 import kr.co.camp.repository.vo.SearchVO;
 import kr.co.camp.service.BoardService;
@@ -164,12 +165,28 @@ public class BoardController {
 		return "";
 	}
 	
-	/*@RequestMapping("/commentList.do")
-	@ResponseBody
-	public List<CommentVO> commentList(int no, SearchVO search) throws Exception {
-		return service.commentList(no);
-	}*/
+	@RequestMapping("/commentList.do")
+	public Map<String, Object> commentList(SearchVO search) throws Exception {
+		
+		Map<String, Object> map  = service.commentList(search);
+		
+		
+		PageResultVO vo = (PageResultVO)map.get("pageResult");
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("list", map.get("list"));
+		result.put("pageResult", map.get("pageResult"));
+		
+		
+		return result;
+		
+		
+	}
 	
+	
+	
+	
+}
 	/*@RequestMapping("/commentRegist.do")
 	@ResponseBody
 	public List<CommentVO> commentRegist(CommentVO comment) throws Exception {
@@ -182,4 +199,3 @@ public class BoardController {
 	
 	
 	
-}

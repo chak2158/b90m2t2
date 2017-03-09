@@ -20,13 +20,13 @@ public interface BoardService {
 	
 	public void delete(int no) throws Exception;
 	
-	public List<CommentVO> commentList(int no) throws Exception ;
+	public Map<String, Object> commentList(SearchVO search) throws Exception ;
 	
-	public List<CommentVO> commentRegist(CommentVO comment) throws Exception;
-	
-	public List<CommentVO> commentUpdate(CommentVO comment) throws Exception ;
-	
-	public List<CommentVO> commentDelete(CommentVO comment) throws Exception ;
+//	public List<CommentVO> commentRegist(CommentVO comment) throws Exception;
+//	
+//	public List<CommentVO> commentUpdate(CommentVO comment) throws Exception ;
+//	
+//	public List<CommentVO> commentDelete(CommentVO comment) throws Exception ;
 
 	Map<String, Object> detail(int no) throws Exception;
 }

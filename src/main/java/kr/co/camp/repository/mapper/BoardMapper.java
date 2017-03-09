@@ -33,9 +33,11 @@ public interface BoardMapper {
 	/* 댓글 관련                                             */
 	/* =================================================== */
 	public void insertBoardComment(CommentVO comment) throws Exception;
-	public List<CommentVO> selectBoardCommentByNo(int no) throws Exception;
+	public List<CommentVO> selectBoardCommentByNo(SearchVO search) throws Exception;
 	public void deleteBoardComment(int commentNo) throws Exception;
 	public void updateBoardComment(CommentVO comment) throws Exception;
+	public int selectCommentCount (SearchVO search) throws Exception;
+
 }
 
 

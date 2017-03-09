@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import kr.co.camp.repository.mapper.BoardMapper;
 import kr.co.camp.repository.vo.BoardVO;
-import kr.co.camp.repository.vo.CommentVO;
 import kr.co.camp.repository.vo.PageResultVO;
 import kr.co.camp.repository.vo.ReviewImageVO;
 import kr.co.camp.repository.vo.SearchVO;
@@ -83,11 +82,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public List<CommentVO> commentList(int no) throws Exception {
-		return dao.selectBoardCommentByNo(no);
+	public Map<String, Object> commentList(SearchVO search) throws Exception {
+		Map<String, Object> result = new HashMap<>();
+		result.put("list", dao.selectBoardCommentByNo(search));
+		result.put("pageResult", new PageResultVO(search.getPageNo(), dao.selectCommentCount(search)));
+		System.out.println(dao.selectCommentCount(search));
+		return result;
 	}
 	
-	@Override
+	/*@Override
 	public List<CommentVO> commentRegist(CommentVO comment) throws Exception {
 		dao.insertBoardComment(comment);
 		return dao.selectBoardCommentByNo(comment.getNo());
@@ -103,6 +106,6 @@ public class BoardServiceImpl implements BoardService {
 	public List<CommentVO> commentDelete(CommentVO comment) throws Exception {
 		dao.deleteBoardComment(comment.getReviewNo());
 		return dao.selectBoardCommentByNo(comment.getNo());
-	}
+	}*/
 
 }

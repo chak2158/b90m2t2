@@ -124,15 +124,24 @@
 	</resultMap>
 	
 	
-	<select id="selectBoardCommentByNo" parameterType="int" resultMap="boardCommentMap">
+	<select id="selectBoardCommentByNo" parameterType="searchVO" resultMap="boardCommentMap">
 	  select *
     	  from ( 
     	  		 select rownum rnum, a.*
     	           from (select *  
     	                   from tb_review_comment
-    	                  order by review_no desc 
+    	                   where review_no = #{reviewNo}
+    	                  order by reg_date desc 
     	                ) a 
     	       )  
     	 where rnum between #{begin} and #{end}
+	</select>
+	
+	<select id="selectCommentCount" parameterType="searchVO" resultType="int">
+	
+		select count(*)
+		  from tb_review_comment
+		where review_no = #{reviewNo}
+	
 	</select>
 </mapper>

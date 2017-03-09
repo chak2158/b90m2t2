@@ -2,12 +2,16 @@ drop table tb_review_board
 drop table tb_review_comment
 drop table tb_review_image
 drop table tb_review_recom
- select s_review_board_no.nextval from dual
+select s_review_board_no.nextval from dual
 select * from tb_review_board
 select * from tb_review_comment
 select * from tb_review_image
 select * from tb_review_recom
 select * from tb_review_image
+
+select 'root'
+from TB_REVIEW_COMMENT;
+delete tb_review_board;
 
 purge recyclebin
 
@@ -93,17 +97,17 @@ create table tb_review_comment(
 );
 
 	insert into tb_review_comment (review_no, no, member_id, review_comment) 
-	values(70, s_review_comment_no.nextVal, '아이디1', '댓글1');
+	values(54, s_review_comment_no.nextVal, '아이디1', '댓글1');
 	insert into tb_review_comment (review_no, no, member_id, review_comment) 
-	values(70, s_review_comment_no.nextVal, '아이디2', '댓글2');
+	values(54, s_review_comment_no.nextVal, '아이디2', '댓글2');
 	insert into tb_review_comment (review_no, no, member_id, review_comment) 
-	values(70, s_review_comment_no.nextVal, '아이디3', '댓글3');
+	values(54, s_review_comment_no.nextVal, '아이디3', '댓글3');
 	insert into tb_review_comment (review_no, no, member_id, review_comment) 
-	values(70, s_review_comment_no.nextVal, '아이디4', '댓글4');
+	values(54, s_review_comment_no.nextVal, '아이디4', '댓글4');
 	insert into tb_review_comment (review_no, no, member_id, review_comment) 
-	values(70, s_review_comment_no.nextVal, '아이디5', '댓글5');
+	values(54, s_review_comment_no.nextVal, '아이디5', '댓글5');
 	insert into tb_review_comment (review_no, no, member_id, review_comment) 
-	values(70, s_review_comment_no.nextVal, '아이디6', '댓글6');
+	values(54, s_review_comment_no.nextVal, '아이디6', '댓글6');
 
 	
 

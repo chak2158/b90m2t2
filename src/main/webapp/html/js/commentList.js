@@ -1,42 +1,54 @@
+
+
 function makeCommentList(result) {
 	$("#count").text(result.pageResult.count);
 	
-	console.log(result);
+	console.dir("comment",result);
 	
 	var html = "";
-	
-	for (var i = 0; i < result.list.length; i++) {
-		var board = result.list[i];
-	
-		html += '<tr>';
-		html += '	<td>' + coment.reviewNo + '</td>';
-		html += '	<td><a href="javascript:detail('+coment.reviewNo+');">' + coment.title + '</a></td>';
-		html += '	<td>' + coment.content + '</td>';
-		html += '	<td>' + coment.memberId + '</td>';
+	html += '<table class="table table-hover table-bordered">';
+	html += '	<colgroup>'; 
+	html += '		<col width="7%">'; 
+	html += '		<col width="*">'; 
+	html += '		<col width="14%">'; 
+	html += '		<col width="10%">'; 
+	html += '	</colgroup>'; 
+	  
+	for (var i = 0; i < result.length; i++) {
+		var comment = result[i];
+		html += '<tr id="row' + comment.reviewNo + '">';
+		html += '	<td>' + comment.memberId + '</td>';
+		html += '	<td>' + comment.content + '</td>';
 		
-		var date = new Date(coment.regDate);
+		var date = new Date(comment.regDate);
 		var time = date.getFullYear() + "-" 
 		         + (date.getMonth() + 1) + "-" 
 		         + date.getDate() + " "
 		         + date.getHours() + ":"
 		         + date.getMinutes() + ":"
 		         + date.getSeconds();
-		html += '<td>' + time + '</td>';  
+		html += '	<td>' + time + '</td>';  
+		html += '	<td>';    
+		html += '		<a href="javascript:commentUpdateForm(' + comment.reviewNo + ')" class="btn btn-success btn-sm" role="button">수정</a>';    
+		html += '		<a href="javascript:commentDelete(' + comment.reviewNo + ')" class="btn btn-danger btn-sm" role="button">삭제</a>';    
+		html += '	</td>';    
 		html += '</tr>';
+	}
+	if (result.list.length) {
+		html += '<td colspan="4">댓글이 존재하지 않습니다.</td>';
+	}
 		
-	}
-	
-	if (!result.list.length) {
-		html += '<tr><td colspan="4">게시물이 존재하지 않습니다.</td></tr>';
-	}
-	
-	$("#pageTable").html(html);
-	
-	makeCommentLink(result.pageResult);
+		$("#pageTable").html(html);
+		makeCommentLink(result.pageResult);
 }
+
+
 
 function makeCommentLink(comm) {
 	var html = "";
+	html+='<nav>';
+	html+='<ul class="pagination">';
+	
 	if (comm.count != 0) {
 		var clz = "";
 		if (comm.prev == false) {
@@ -80,22 +92,33 @@ function makeCommentLink(comm) {
 	    html += '</li>';
 	}
 	
-	$("nav > ul.pagination").html(html);
+	html+='</ul>';
+	html+='</nav>';
+	
+	$("#content").append(html);
 }
 
+// 댓글 목록 조회
 function commentList(pageNo) {
-	if (pageNo === undefined) {
-		pageNo = 1;
+	// console.log(result);
+		 
+		if (pageNo === undefined) {
+			pageNo = 1;
+		}
+		
+		console.log("디테일 번호",board.reviewNo);
+		
+		$.ajax({
+			url: "/b90m2t2/board/commentList.do",
+			dataType: "json",
+			data: {pageNo:pageNo,
+				   reviewNo: board.reviewNo}
+		})
+		.done(makeCommentList);
 	}
-	$.ajax({
-		url: "/b90m2t2/comment/commentList.do",
-		dataType: "json",
-		data: {pageNo:pageNo}
-	})
-	.done(makeCommentList);
-}
-  
+
+	  
 function reviewComment() {
-	$("div#content").load("commentList.html");
+// $("div#content").load("commentList.html");
 	commentList();
 }
