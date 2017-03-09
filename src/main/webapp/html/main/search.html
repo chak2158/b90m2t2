@@ -1,46 +1,92 @@
-
+<button href="#"id="zz" class="df">e222e2</button>
 <input type='text' id='searchReq' />
 <button id="searchReqBtn">검색</button>
 <div id=searchResult></div>
 <script>
+	$("#zz").click(function(){
+	console.log("시작함k");
+	});
+	$(".df").click(function(){
+	console.log("시작함23");
+	});
+
+	$(".placeId").click(function(){
+		console.log("시작함");
+ 		
+/* 		console.log($(".placeId").id);
+		console.log($(".placeId").id());
+		$.ajax({
+			url : "/b90m2t2/main/searchDetail.do",
+			type : "GET",
+			data : {placeId: $(".placeId").id}
+		})
+		.done(function(result){
+			console.log("됨");
+			var objs = JSON.parse(result);
+			console.dir(objs);
+			
+		}); */
+		
+	});
+
 
 
 	$("#searchReqBtn").click(function() {
-
 
 		$.ajax({
 			url : "/b90m2t2/main/searchCamp.do",
 			type : "GET",
 			data : {searchWord : $("#searchReq").val()}
-		}).done(function(result) {
+		})
+		.done(function(result) {
+			
 			var objs = JSON.parse(result);
 			var resultLength = objs.results.length;
-			var addr = "";
+			var searchHtml = "";
 			var listImg = "";
 			var imgSrcResult = "";
-			var imgSrc = "";
-			for (var i = 0; i < resultLength; i++) {
-//			console.log(objs.results[i].photos[0].photo_reference);
-//			imgSrc = objs.results[i].photos[0].photo_reference;
-			addr+=
-				objs.results[i].name+"<br>"+
-				"주소 : "+objs.results[i].formatted_address+"<br>"+
-				"평점 : "+objs.results[i].rating+"<br>"
-				;		
-				//"사진: <img src=https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+imgSrc+"/><br><br>"
-/*				
-			$.ajax({
-				url:"/b90m2t2/main/searchImg.do",
-				type : "GET",
-				data : {imgSrc : objs.results[i].photos[0].photo_reference}
-			}).done(function(result){
-				imgSrcResult = JSON.parse(result);
-				console.log(imgSrcResult);
-				console.dir(imgSrcResult);
-				}); 
-*/
+			var imgSrc = "사진 : 사진이 존재하지 않습니다. <br><br>";
+			var avrScore = "평점이 존재하지 않습니다.";
+			var placeDetailSrc = "";
+		 	console.dir(objs); 
+			
+			if(objs.error_message != undefined){
+				addr+=objs.error_message;
 			}
-				$("#searchResult").html(addr);
+			
+			for (var i = 0; i < resultLength; i++) {
+				if(objs.results[i].rating != undefined) avrScore = objs.results[i].rating;
+				if(objs.results[i].photos != undefined){
+					/* console.log(objs.results[i].photos[0].photo_reference); */
+					imgSrc ="<img src=https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+objs.results[i].photos[0].photo_reference+"&key=AIzaSyBkd_UadYzaVrZo1iLoAVTLtV3iSkl_MwI><br><br>";
+					/* console.log(imgSrc); */
+				}	
+				searchHtml+=
+					"<button class='placeId' id='"+objs.results[i].place_id+"'>"+objs.results[i].name+"</button><br>"+
+					"주소 : "+objs.results[i].formatted_address+"<br>"+
+					"평점 : "+avrScore+"<br>"+
+					"사진:"+imgSrc;
+				
+				
+			}	
+			 $("#searchResult").html(searchHtml);
+			
+			$(".placeId").click(function(){
+				console.log("시작함");
+				console.log($(".placeId").id());
+				$.ajax({
+					url : "/b90m2t2/main/searchDetail.do",
+					type : "GET",
+					data : {placeId: $(".placeId").id()}
+				})
+				.done(function(result){
+					console.log("됨");
+					var objs = JSON.parse(result);
+					console.dir(objs);
+					
+				}); 
+			});
+
 		});
 	});
 </script>

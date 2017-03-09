@@ -1,17 +1,15 @@
 package kr.co.camp.main.controller;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.co.camp.repository.vo.SearchImgVO;
+import kr.co.camp.repository.vo.SearchDetailVO;
 import kr.co.camp.repository.vo.SearchVO;
 
 @RestController
@@ -24,7 +22,7 @@ public class MainController {
 		System.out.println(search.getSearchWord());
 		
 		String text = URLEncoder.encode(search.getSearchWord(), "UTF-8");
-		String apiUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+text+"&key=AIzaSyBkd_UadYzaVrZo1iLoAVTLtV3iSkl_MwI";
+		String apiUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+text+"&language=ko&types=campground|rv_park&key=AIzaSyBkd_UadYzaVrZo1iLoAVTLtV3iSkl_MwI";
 		
 		URL url = new URL(apiUrl);
 		InputStream in = url.openStream();
@@ -45,13 +43,14 @@ public class MainController {
 		
 	}
 	
-	@RequestMapping("/searchImg.do")
-	public String searchImg(SearchImgVO search) throws Exception {
+	@RequestMapping("/searchDetail.do")
+	public String searchImg(SearchDetailVO search) throws Exception {
 		
-		System.out.println(search.getImgSrc());
+		System.out.println(search.getPlaceId());
 		
-		String text = URLEncoder.encode(search.getImgSrc(), "UTF-8");
-		String apiUrl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference="+text+"&key=AIzaSyBkd_UadYzaVrZo1iLoAVTLtV3iSkl_MwI";
+		String src = URLEncoder.encode(search.getPlaceId(), "UTF-8");
+		
+		String apiUrl = "https://maps.googleapis.com/maps/api/place/details/json?placeid="+src+"&key=AIzaSyBkd_UadYzaVrZo1iLoAVTLtV3iSkl_MwI";
 		
 		URL url = new URL(apiUrl);
 		InputStream in = url.openStream();
