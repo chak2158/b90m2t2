@@ -21,7 +21,7 @@ function goReview(){
 	$("div#content").load(path+"board/list.html");
 }
 function goMyPage(){
-	$("div#content").load(path+"myPage/fullCalendar.html");
+	location.href = "http://192.168.0.230:9090/b90m2t2/html/myPage/fullCalendar.html";
 }
 function goLoginForm(){
 	$("div#content").load(path+"login/loginForm.html")
