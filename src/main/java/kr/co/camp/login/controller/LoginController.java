@@ -86,7 +86,7 @@ public class LoginController {
 		
 		CampMemberVO member = new CampMemberVO();
 		member.setMemberId(request.getParameter("memberId"));
-		member.setPassword("cRDtpNCeBiql5KOQsKVyrA0sAiA=");
+		member.setPassword(request.getParameter("password"));
 		member.setEmail(request.getParameter("email"));
 		member.setHomeAddr(request.getParameter("homeAddr"));
 		member.setPhoneNumber(request.getParameter("phoneNumber"));
