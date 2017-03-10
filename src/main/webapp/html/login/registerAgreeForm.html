@@ -1,6 +1,6 @@
 <br><br><br><br>
 <div style="margin:0 auto;width:700px">
-    	<p class="inputfield"><label for="message">캠프파이어 약관동의</label>
+    	<p class="inputfield"><label for="message">캠프파이어 약관동의!!</label>
     	<br>
     	<input type="checkbox" id="agree01" name="agree01"/>동의<p>
     	<textarea name="message" id="message" rows="10" cols="100" >
@@ -61,7 +61,7 @@
 			return;
 		}
 		
-		$("div#content").load("registerForm.html")
+		$("div#content").load(path+"login/registerForm.html");
 		
 	})
 	
@@ -75,7 +75,7 @@
 	})
 	
 	$("#disagree").click(function() {
-		$("div#content").load("main.html");
+		$("div#content").load(path+"main/search.html");
 	})
 
 </script>

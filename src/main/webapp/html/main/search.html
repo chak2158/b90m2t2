@@ -1,4 +1,4 @@
-<button href="#"id="zz" class="df">iㄷㅕㅑop80</button>
+<button href="#"id="zz" class="df">iㄷㅕㅑopㅐ80</button>
 <input type='text' id='searchReq' />
 <button id="searchReqBtn">검색</button>
 <div id=searchResult></div>
@@ -23,7 +23,7 @@
 	var imgSrc = "";
 	var avrScore = "";
 	var placeDetailSrc = "";
-
+	var website = "";
 
 	$("#searchReqBtn").click(function() {
 		//검색어에 대한 결과값 요청
@@ -82,8 +82,12 @@
 						 imgSrc = "사진 : 사진이 존재하지 않습니다. <br><br>";
 						 avrScore = "평점이 존재하지 않습니다.";
 						 placeDetailSrc = "";
+						 website = "홈페이지가 존재하지 않습니다";
 						//에러메세지 검출
-					
+						if(objs.result.website != undefined){
+							 website ="<a href='"+objs.result.website+"'>바로가기</a><br>";
+						}
+							
 						if(objs.error_message != undefined){
 							searchHtml+=objs.error_message;
 						}
@@ -94,7 +98,7 @@
 						"주소 : "+objs.result.formatted_address+"<br>"+
 						"평점 : "+avrScore+"<br>"+
 						"전화번호  : "+objs.result.formatted_phone_number+"<br>"+
-						"홈페이지 :<a href='"+objs.result.website+"'>바로가기</a><br>";
+						"홈페이지 :"+website;
 /* 						for(int i=0 ; i < photosLength ; i++){							
 						if(objs.result.photos[i] != undefined){
 							imgSrc ="<img src=https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+objs.result.photos[i].photo_reference+"&key=AIzaSyBkd_UadYzaVrZo1iLoAVTLtV3iSkl_MwI><br><br>";
