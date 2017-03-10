@@ -94,22 +94,47 @@
 						if(objs.result.rating != undefined) avrScore = objs.result.rating;
 						console.dir(objs);
 						searchHtml+=
+						"<div>"+
 						objs.result.name+"<br>"+
 						"주소 : "+objs.result.formatted_address+"<br>"+
 						"평점 : "+avrScore+"<br>"+
 						"전화번호  : "+objs.result.formatted_phone_number+"<br>"+
-						"홈페이지 :"+website;
-/* 						for(int i=0 ; i < photosLength ; i++){							
+						"홈페이지 :"+website+"<br>"+
+						"<div id='map'></div>"
+						"<div class='detailPicContainer'>";
+ 						for(var i=0 ; i < photosLength ; i++){						
 						if(objs.result.photos[i] != undefined){
-							imgSrc ="<img src=https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+objs.result.photos[i].photo_reference+"&key=AIzaSyBkd_UadYzaVrZo1iLoAVTLtV3iSkl_MwI><br><br>";
+							imgSrc ="<img src=https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference="+objs.result.photos[i].photo_reference+"&key=AIzaSyBkd_UadYzaVrZo1iLoAVTLtV3iSkl_MwI><br><br>";
 						}	
 						searchHtml+=
-						"사진"+i+":"+imgSrc+"<br>";
-						} */
-						
+						"사진"+i+":<div class='detailPic'>"+imgSrc+"</div>";
+						} 
+ 						searchHtml+="</div></div>";
 						$("#searchResult").html(searchHtml);
 					}); //세부 정보 파싱		
 				}); //검색결과 제목 클릭시 세부 정보 결과값 요청
 		});//검색어 결과값 파싱
 	});//검색어에 대한 결과값 요청
 </script>
+<script>
+      function initMap() {
+        var myLatLng = {lat: -25.363, lng: 131.044};
+
+        // Create a map object and specify the DOM element for display.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: myLatLng,
+          scrollwheel: false,
+          zoom: 4
+        });
+
+        // Create a marker and set its position.
+        var marker = new google.maps.Marker({
+          map: map,
+          position: myLatLng,
+          title: 'Hello World!'
+        });
+      }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkd_UadYzaVrZo1iLoAVTLtV3iSkl_MwI&callback=initMap"
+        async defer></script>
