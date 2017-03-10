@@ -1,62 +1,66 @@
 <script id="myDetail" type="x">
 {{#detail}}
-	<div class="container">
+<div class="container">
 	<div class="content">
 		<ol class="breadcrumb">
-		  <li>Home</li>
+		  <li><a href="${pageContext.request.contextPath}/main/main.do">Home</a></li>
 		  <li class="active">자유게시판</li>
 		</ol>
 		<table class="table table-no-border">
 		<tr>
 			<td class="td-txt-right td-wp10">번호</td>
-		 	<td>{{reviewNo}}</td>
+		 	<td>{{no}}</td>
 		</tr>
-
 		<tr>
 			<td class="td-txt-right td-wp10">제목</td>
 		 	<td>{{title}}</td>
 		</tr>
-
 		<tr>
 			<td class="td-txt-right td-wp10">글쓴이</td>
-		 	<td>{{content}}</td>
+		 	<td>{{memberId}}</td>
 		</tr>
-
 		<tr>
 			<td class="td-txt-right td-wp10">내용</td>
-		 	<td>{{title}}</td>
+		 	<td>{{content}}</td>
 		</tr>
+		<tr>
 		
-		<tr>
-			<td class="td-txt-right td-wp10">첨부파일</td>
-		 	<td><a href="{{pageContext.request.contextPath}}/upload${file.filePath}/${file.systemName}">${file.oriName}</a>(${file.fileSize} byte)</td>
+		<td class="td-txt-right td-wp10">첨부파일</td>
+		 	<td><a href="${pageContext.request.contextPath}/upload${file.filePath}/${file.systemName}">${file.oriName}</a>(${file.fileSize} byte)</td>
 		</tr>
+		</table>
+	</div>
 		<tr>
-			<td class="td-txt-right td-wp10">등록일</td>
+		<td class="td-txt-right td-wp10">등록일</td>
+		</tr>
+		<hr>
 		<button class="btn btn-primary btn-lg" type="button" onclick="pageDelete({{reviewNo}});">삭제</button>
 		<button class="btn btn-primary btn-lg" type="button" onclick="pageUpdate({{reviewNo}});">수정</button>
-		</tr>
 	</div>
+	
 	<hr>
 	<div id="comment">
-	<form id="rForm" class="form-inline">
-		<div class="form-group">
-			<input type="text" name="memberId" class="form-control" value="{{memberId}}"/>
-		</div>
-		 <div class="form-group">
-			 <input type="text" name="content" class="form-control input-wp1" placeholder="내용을 입력하세요">
-	     </div>
-		<button class="btn btn-primary btn-lg" type="button" onclick="pageCommentList({{reviewNo}});">등록</button>
-	</form>					
+		<form id="rForm" class="form-inline">
+			<div class="form-group">
+				<input type="text" name="memberId" class="form-control" value="{{memberId}}" placeholder="아이디를 입력하세요">
+			</div>
+			<div class="form-group">
+				<input type="text" name="content" class="form-control input-wp1" placeholder="내용을 입력하세요">
+			</div>
+			  	<button type="button" class="btn btn-primary" onclick="commentWrite()">등록</button>
+		</form>					
 	</div>
-<hr>
+	<hr>
+	<div id="commentList"></div>		
+	</div>
+</div>	
 <div id="container">
 </div>
 {{/detail}}
 </script>
 
-<!-- <div id="container"> -->
-<!-- </div> -->
+<div id="container">
+</div>
 <!-- <a href="javascript:reviewBoard();">삭제</a>	 -->
 
 <script src="../js/detail.js"></script>

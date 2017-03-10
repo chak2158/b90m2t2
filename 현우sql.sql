@@ -2,6 +2,7 @@ drop table tb_review_board
 drop table tb_review_comment
 drop table tb_review_image
 drop table tb_review_recom
+
 select s_review_board_no.nextval from dual
 select * from tb_review_board
 select * from tb_review_comment
@@ -10,7 +11,7 @@ select * from tb_review_recom
 select * from tb_review_image
 
 select 'root'
-from TB_REVIEW_COMMENT;
+from tb_review_comment;
 delete tb_review_board;
 
 purge recyclebin
@@ -36,20 +37,6 @@ create sequence s_review_image_no;
 create sequence s_review_recome_no;
 
 
-create table tb_review_board(
-	review_no number(2),
-	member_id varchar2(20) not null,
-	title varchar2(1000) not null,
-	content varchar2(3000) not null,
-	reg_date date default sysDate,
-	recom_cnt number(6) not null,
-	unrecom_cnt number(6) not null,
-	map_latitude varchar2(1000) not null,
-	map_longitude varchar2(1000) not null,
-	view_cnt number(6),
-	constraint pk_tb_review_board primary key (review_no)
-	);
-	
 	create table tb_review_board ( 
 	review_no number(6) primary key,
 	member_id varchar2(20),
@@ -77,11 +64,17 @@ create table tb_review_board(
 	insert into tb_review_board (review_no, member_id, title, content, recom_cnt, unrecom_cnt, map_latitude, map_longitude, view_cnt) 
 	values(s_review_board_review_no.nextVal, 'root', '캠프파이어제목6', '캠핑지내용6', 02, 02, '05', '05', 05);
 	
-
-	
-	
-	
-	
+	insert into tb_review_board(
+		   	review_no, 
+		    title, 
+		    member_id, 
+		    content
+		) values (
+		  s_review_board_no.nextval,
+		   'asd',
+		   'root',
+		   'asd'
+		)    
 	
 
 	
@@ -109,21 +102,8 @@ create table tb_review_comment(
 	insert into tb_review_comment (review_no, no, member_id, review_comment) 
 	values(54, s_review_comment_no.nextVal, '아이디6', '댓글6');
 
-	
-
-
 
 	
-		insert into tb_review_board(
-		   	review_no, 
-		    title, 
-		    member_id, 
-		    content
-		) values (
-		  s_review_board_no.nextval,
-		   'asd',
-		   'root',
-		   'asd'
-		)    
+		
 
 
