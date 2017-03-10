@@ -39,6 +39,13 @@
 		where email = #{email}
 	</select>
 	
+	<select id="searchPass" parameterType="campMemberVO" resultMap="memberMap">
+		select *
+		  from tb_camp_member
+		where member_id = #{memberId} 
+		  and email = #{email}
+	</select>
+	
 	
 	
 	<insert id="insertMember" parameterType="campMemberVO">

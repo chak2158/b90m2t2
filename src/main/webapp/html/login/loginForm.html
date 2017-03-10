@@ -32,18 +32,30 @@ $("#join").click(function () {
 	if(isEmpty(f.memberId,"아이디를 입력하세요")) return;
 	if(isEmpty(f.password,"패스워드를 입력하세요")) return;
 	
+	console.log("password",f.password.value);
+	
+	var pass;
+	
+	$.ajax({
+		url:"http://localhost:10001/login/pass.do",
+		data:{pass:f.password.value},
+		async: false,
+		type:"GET"
+	}).done(function (result) {
+		pass = result;
+	});
+	
+	console.log("pass",pass);
+	
 	$.ajax({
 		url:"/b90m2t2/login/join.do",
 		dataType:"json",
 		type:"POST",
 		data:{
 		memberId: $("input[name=memberId]").val(),  
-		password: $("input[name=password]").val()
+		password: pass
 		}
 	}).done(function(result) {
-		
-		
-		console.log("키키키");
 		
 		if(result.loginCheck){
 		  	localStorage.setItem("member",result.member);
@@ -82,6 +94,8 @@ $("#searchPassBtn").click(function() {
 		
 		var email = $("#emailForId");
 		
+		console.log("email",email.val());
+		
 		if (email.val() == ""){
 			alert("이메일을 입력하세요.")
 			email.focus();
@@ -96,15 +110,17 @@ $("#searchPassBtn").click(function() {
 		 return false;
 		} 
 		
-// 		$.ajax({
-// 			url:"/b90m2t2/login/searchPass.do",
-// 			type:"POST",
-// 			data:{email:email.val(),
-// 				  password:
-// 			}
-// 		);
+		$.ajax({
+			url:"/b90m2t2/login/searchPass.do",
+			type:"POST",
+			data:{
+				memberId:$("#passwordForId").val(),				
+				email:email.val(),
+			}
+		});
 		
 		$("#searchIdBtn + div").remove();
+		alert("이메일이 발송되었습니다.");
 		
 	});
 	
@@ -204,6 +220,7 @@ $("html").append('<script src="https://apis.google.com/js/platform.js?onload=ren
 		$("#LoginFormNav").addClass("hidden");
 		$("#MyPageNav").removeClass("hidden");
 		$("#RegisterNav").addClass("hidden");
+		$("div#content").load(path+"main/search.html");
  }
  
  

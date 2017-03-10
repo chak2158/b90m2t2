@@ -32,7 +32,6 @@ public class LoginController {
 	@Autowired
 	private NaverTest nt;
 	
-	@CrossOrigin(origins = "http://localhost:10001")
 	@RequestMapping("/join.do")
 	public Map<String, Object> join(CampMemberVO user,HttpServletRequest request) throws Exception {
 		Map<String, Object> param = new HashMap<>();
@@ -56,33 +55,28 @@ public class LoginController {
 		}
 	}
 	
-	@CrossOrigin(origins = "http://localhost:10001")
 	@RequestMapping("/checkId.do")
 	public boolean checkId(String id) throws Exception{
-		System.out.println("id : " + id);
-		System.out.println(service.checkId(id));
 		return service.checkId(id);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:10001")
 	@RequestMapping("/checkEmail.do")
 	public boolean checkEmail(String email) throws Exception{
-		System.out.println("여기 왔다.");
-		System.out.println("email : " + email);
-		System.out.println(service.checkEmail(email));
 		return service.checkEmail(email);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:10001")
 	@RequestMapping("/searchId.do")
 	public void searchId(String email) throws Exception{
-		System.out.println("이메일 : " + email);
-		System.out.println("아이디 찾기 " + service.searchId(email));
-		nt.sendEmail(email);
-		
+//		nt.sendEmail(email);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:10001")
+	@RequestMapping("/searchPass.do")
+	public void searchPass(CampMemberVO member) throws Exception {
+		member = service.searchPass(member);
+//		nt.sendEmail(member);
+	}
+	
+	
 	@RequestMapping(value="/register.do", method=RequestMethod.POST)
 	public boolean register(MultipartHttpServletRequest request) throws Exception {
 		

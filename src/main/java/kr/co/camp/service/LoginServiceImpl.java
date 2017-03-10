@@ -42,7 +42,11 @@ public class LoginServiceImpl implements LoginService{
 		return dao.searchId(email);
 	}
 		
+	public CampMemberVO searchPass(CampMemberVO user) 
+			throws Exception {
 		
+		return dao.searchPass(user);
+	}
 		
 	
 }

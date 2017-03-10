@@ -11,4 +11,6 @@ public interface LoginService {
 	public boolean checkId(String id) throws Exception;
 	public boolean checkEmail(String email) throws Exception;
 	public String searchId(String email) throws Exception;		
+	public CampMemberVO searchPass(CampMemberVO user) throws Exception;
+	
 }
