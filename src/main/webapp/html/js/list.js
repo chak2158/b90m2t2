@@ -100,27 +100,6 @@ function makePageLink(data) {
 	    html += '</li>';
 	}
 	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	$("nav > ul.pagination").html(html);
 }
 
@@ -137,22 +116,10 @@ function pageList(pageNo) {
 }
   
 function reviewBoard() {
+	console.log("하핳")
 	$("div#content").load("list.html");
 	pageList();
-	
 }
-
-// function makeDetail(result){
-// console.log(result);
-//	
-// var html = "";
-// var board = result.detail;
-//	
-//	
-//	
-// // $("#content").html(html);
-//	
-// }
 
 function detail(no) {
 	pageDetail(no);
@@ -261,31 +228,6 @@ function pageUpdateClick(){
 }
 
 
-
-
-// ===============================================================
-
-
-
-//function commentList(pageNo) {
-//// console.log(result);
-//	 
-//	if (pageNo === undefined) {
-//		pageNo = 1;
-//	}
-//	$.ajax({
-//		url: "/b90m2t2/board/commentList.do",
-//		dataType: "json",
-//		data: {pageNo:pageNo,
-//			   reviewNo: board.reviewNo}
-//	})
-//	.done(makeCommentList);
-//}
-//  
-//function reviewComment() {
-//// $("div#content").load("commentList.html");
-//	commentList();
-//}
 
 
 

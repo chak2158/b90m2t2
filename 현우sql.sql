@@ -25,17 +25,17 @@ insert into tb_camp_member (
 	
 -- 리뷰 게시판 데이터 -- 
 insert into tb_review_board (review_no, member_id, title, content, recom_cnt, unrecom_cnt, map_latitude, map_longitude, view_cnt) 
-values(s_review_board_review_no.nextVal, 'root', '캠프파이어제목1', '캠핑지내용1', 0, 0, '0', '0', 0);
+values(s_review_board_no.nextVal, 'root', '캠프파이어제목1', '캠핑지내용1', 0, 0, '0', '0', 0);
 insert into tb_review_board (review_no, member_id, title, content, recom_cnt, unrecom_cnt, map_latitude, map_longitude, view_cnt) 
-values(s_review_board_review_no.nextVal, 'root', '캠프파이어제목2', '캠핑지내용2', 01, 01, '01', '01', 01);
+values(s_review_board_no.nextVal, 'root', '캠프파이어제목2', '캠핑지내용2', 01, 01, '01', '01', 01);
 insert into tb_review_board (review_no, member_id, title, content, recom_cnt, unrecom_cnt, map_latitude, map_longitude, view_cnt) 
-values(s_review_board_review_no.nextVal, 'root', '캠프파이어제목3', '캠핑지내용3', 02, 02, '02', '02', 02);
+values(s_review_board_no.nextVal, 'root', '캠프파이어제목3', '캠핑지내용3', 02, 02, '02', '02', 02);
 insert into tb_review_board (review_no, member_id, title, content, recom_cnt, unrecom_cnt, map_latitude, map_longitude, view_cnt) 
-values(s_review_board_review_no.nextVal, 'root', '캠프파이어제목4', '캠핑지내용4', 02, 02, '03', '03', 03);
+values(s_review_board_no.nextVal, 'root', '캠프파이어제목4', '캠핑지내용4', 02, 02, '03', '03', 03);
 insert into tb_review_board (review_no, member_id, title, content, recom_cnt, unrecom_cnt, map_latitude, map_longitude, view_cnt) 
-values(s_review_board_review_no.nextVal, 'root', '캠프파이어제목5', '캠핑지내용5', 02, 02, '04', '04', 04);
+values(s_review_board_no.nextVal, 'root', '캠프파이어제목5', '캠핑지내용5', 02, 02, '04', '04', 04);
 insert into tb_review_board (review_no, member_id, title, content, recom_cnt, unrecom_cnt, map_latitude, map_longitude, view_cnt) 
-values(s_review_board_review_no.nextVal, 'root', '캠프파이어제목6', '캠핑지내용6', 02, 02, '05', '05', 05);
+values(s_review_board_no.nextVal, 'root', '캠프파이어제목6', '캠핑지내용6', 02, 02, '05', '05', 05);
 	
 select * from tb_review_board
 
