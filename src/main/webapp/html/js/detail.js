@@ -24,12 +24,10 @@ commentList();
 ///////////////////////////////////////////////////////////////////////////
 
 function makeCommentList(result) {
+	
 	$("#count").text(result.pageResult.count);
-	console.log("카운트",result.pageResult.count);
 	
-	console.log(result);
-	
-	var html = "";
+	var html = "<div id='commentList' style='width:60%;margin-left:20%;'>";
 	html += '<table class="table table-hover table-bordered">';
 	html += '	<colgroup>'; 
 	html += '		<col width="7%">'; 
@@ -58,9 +56,11 @@ function makeCommentList(result) {
 		html += '	</td>';    
 		html += '</tr>';
 	}
-	if (result.list.length) {
+	
+	if (!result.list.length) {
 		html += '<td colspan="4">댓글이 존재하지 않습니다.</td>';
 	}
+		html+='</div>';
 		
 		$("#content").append(html);
 		makeCommentLink(result.pageResult);
@@ -69,7 +69,7 @@ function makeCommentList(result) {
 
 
 function makeCommentLink(comm) {
-	var html = "";
+	var html = "<div style='width:30%;margin-left:20%;'>";
 	html+='<nav>';
 	html+='<ul class="pagination">';
 	
@@ -118,6 +118,7 @@ function makeCommentLink(comm) {
 	
 	html+='</ul>';
 	html+='</nav>';
+	html+='</div>';
 	
 	$("#content").append(html);
 }

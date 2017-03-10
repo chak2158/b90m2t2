@@ -167,10 +167,8 @@ function pageDetail(no){
 		async:false
 	})
 	.done(function(result) {
-		
 		board=result;
 		$("#content").load("detail.html");
-		alert("ㅋㅋ");
 })
 }
 function pageWrite(){
