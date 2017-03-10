@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script src="../js/main/movingForm.js"></script>
 <script src="../js/list.js"> </script>
 <script src="../js/loginVariables.js" ></script>
@@ -12,9 +13,14 @@
 <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css" />
 <style>
 body{
-background:url("css/WaffleFarmCampground_Sunset_ClubGroup-Camping-Slide2.jpg") ;
-z-index:-1;
-filter:Alpha(Opacity=50);
+background:url("css/WaffleFarmCampground_Sunset_ClubGroup-Camping-Slide.jpg");
+}
+div{
+background: rgba(240,240,220,0.7);
+}
+body>div{
+
+background: rgba(240,200,200,0.7);
 }
 #map {
         height: 200px;
@@ -43,6 +49,9 @@ filter:Alpha(Opacity=50);
 .detailPicContainer{
 
 }
+.detailPic{
+width: 200px;
+}
 
 </style>
 </head>
@@ -66,7 +75,7 @@ filter:Alpha(Opacity=50);
               <li id="LoginFormNav"><a href="javascript:goLoginForm();">로그인</a></li>
               <li id="RegisterNav"><a href="javascript:goRegiAgreeForm();">회원가입</a></li>
               <li id="logOutNav" class="hidden"><a href="javascript:gologOut();">로그아웃</a></li>
-              <li id="MyPageNav" class="hidden"><a href="javascript:goMyPage();">마이페이지</a></li>
+              <li id="MyPageNav" class="hidden"><a href="javascript:goMyPage();">내 스케쥴</a></li>
             
             </ul>
           </div><!--/.nav-collapse -->
