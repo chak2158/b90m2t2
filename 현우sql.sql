@@ -42,14 +42,15 @@ select * from tb_review_board
 -- review_no 삽입 요망.
 
 insert into tb_review_comment (review_no, no, member_id, review_comment) 
-values(, s_review_comment_no.nextVal, '아이디1', '댓글1');
+values(129, s_review_comment_no.nextVal, '아이디1', '댓글1');
 insert into tb_review_comment (review_no, no, member_id, review_comment) 
-values(, s_review_comment_no.nextVal, '아이디2', '댓글2');
+values(129, s_review_comment_no.nextVal, '아이디2', '댓글2');
 insert into tb_review_comment (review_no, no, member_id, review_comment) 
-values(, s_review_comment_no.nextVal, '아이디3', '댓글3');
+values(129, s_review_comment_no.nextVal, '아이디3', '댓글3');
 insert into tb_review_comment (review_no, no, member_id, review_comment) 
-values(, s_review_comment_no.nextVal, '아이디4', '댓글4');
+values(129, s_review_comment_no.nextVal, '아이디4', '댓글4');
 insert into tb_review_comment (review_no, no, member_id, review_comment) 
-values(, s_review_comment_no.nextVal, '아이디5', '댓글5');
+values(129, s_review_comment_no.nextVal, '아이디5', '댓글5');
 insert into tb_review_comment (review_no, no, member_id, review_comment) 
-values(, s_review_comment_no.nextVal, '아이디6', '댓글6');
+values(129, s_review_comment_no.nextVal, '아이디6', '댓글6');
+
