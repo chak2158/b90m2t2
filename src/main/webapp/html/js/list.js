@@ -117,7 +117,7 @@ function pageList(pageNo) {
   
 function reviewBoard() {
 	console.log("하핳")
-	$("div#content").load("list.html");
+	$("div#content").load(path+"board/list.html");
 	pageList();
 }
 
@@ -135,7 +135,7 @@ function pageDetail(no){
 	})
 	.done(function(result) {
 		board=result;
-		$("#content").load("detail.html");
+		$("#content").load(path+"board/detail.html");
 })
 }
 function pageWrite(){
@@ -162,14 +162,14 @@ function pageWrite(){
 	})
 	.done(function(){
 		alert("등록 되었습니다")
-		$("#content").load("list.html");
+		$("#content").load(path+"board/list.html");
 		pageList();
 	})
 }
 
 function write(){
 	
-	$("#content").load("write.html");
+	$("#content").load(path+"board/write.html");
 	
 }
 
@@ -183,7 +183,7 @@ function pageDelete(no){
 	})
 	.done(function(){
 		alert("삭제 되었습니다")
-		$("#content").load("delete.html");
+		$("#content").load(path+"board/delete.html");
 		reviewBoard();
 	})
 }
@@ -198,7 +198,7 @@ function pageUpdate(no){
 // console.log(result);
 		board=result.board;
 		console.log(board.reviewNo)
-		$("#content").load("updateForm.html");
+		$("#content").load(path+"board/updateForm.html");
 	});
 }
 
