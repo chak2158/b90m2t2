@@ -149,7 +149,7 @@ function pageWrite(){
 	var files = $("[name=attachFile]")[0].files;
 	
 	for(var i=0;i<files.length;i++) {
-		fd.append("attachFile"+i,files[0]);
+		fd.append("attachFile"+i,files[i]);
 	}
 	
 	
